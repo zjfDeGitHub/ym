@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="__INDEX__/js/public_phone.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			.aui-title{
+				width: 100%;
+				display: flex;
+				align-items: center;
+				margin-top:0.2rem;
+			}
+			.aui-title>a{
+				width:8%;
+			}
+			.aui-title>a>img{
+				width:100%;	
+			}
+			.aui-title>p{
+				
+				font-weight: bold;
+				color: #202020;
+				margin-left: 2.5rem;
+			}
+			.code_img{	
+				margin: 0 auto;
+				margin-top: 1.5rem;
+			}
+			.code_img>img{
+				display: block;
+				margin: 0 auto;
+				width: 3rem;
+				height: 3rem;
+			}
+			.content>p{
+				font-size: 0.1rem;
+				text-align: center;
+				margin-top: 0.3rem;
+			}
+			#saveimg{
+				background:rgba(181,107,255,1);
+				width: 80%;
+				height: 0.8rem;
+				border-radius: 0.1rem;
+				color: #FFFFFF;
+				line-height: 0.8rem;
+				text-align: center;
+				margin: 0 auto;
+				margin-top: 1.5rem;
+			}
+			.content>.confirm{
+				display: block;
+				width: 80%;
+				height: 0.8rem;
+				background:rgba(255,107,107,1);
+				border-radius: 0.1rem;
+				margin: 0 auto;
+				color: #FFFFFF;
+				line-height: 0.8rem;
+				text-align: center;
+				text-decoration: none;
+				margin-top: 0.2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="aui-title">
+				<a href="{:url('/index/member/')}"><img src="__INDEX__/img/back.png" /></a>
+				<p>确认充值</p>
+			</div>
+			<div class="code_img">
+				<!--<img src="__INDEX__/img/code.png" id="testImg"/>-->
+				<img src="__IMG__/{$ewm['img']}" id="testImg"/>
+			</div>
+			<p>保存图片，微信或支付宝付款即可完成充值</p>
+			<div id="saveimg" onclick="save()">保存图片</div>
+			<div class="confirm"><a onclick="OK()">确认充值</a></div>
+		</div>
+	</body>
+	<script>
+		function save() {
+	    var img = document.getElementById("testImg");
+	    var alink = document.createElement("a");
+	    alink.href = img.src;
+	    alink.click();
+	}
+		function OK() {
+		    alert('充值成功，请等待后台确认！！');
+		    window.location.href="{:url('/index/member/index')}";
+
+        }
+	</script>
+</html>

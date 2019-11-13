@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<title>实名认证1</title>
+		<link rel="stylesheet" href="__INDEX__/css/public_phone.css">
+		<script type="text/javascript" src="__INDEX__/js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="__INDEX__/js/public_phone.js"></script>
+		<!--<script type="text/javascript" src="__INDEX__/js/form.js"></script>-->
+		<style>
+			body{
+				background: #F7F9F8;
+			}
+			.nav{
+				width: 100%;
+				height:0.88rem;
+				background: #FFFFFF;
+				position:relative;
+			}
+			.img_1{
+				width: 0.2rem;
+				height:0.36rem;
+				position:absolute;
+				top:0.26rem;
+				left:0.4rem;
+			}
+			.nav img{
+				width: 0.2rem;
+				height:0.36rem;
+				display: block;
+			}
+			.nav>span{
+				display: block;
+				color:#323232;
+				font-size: 0.34rem;
+				line-height: 0.88rem;
+				text-align: center;
+			}
+			.real>p{
+				color:#323232;
+				font-size: 0.24rem;
+				line-height: 1;
+				padding-left:0.42rem;
+				box-sizing: border-box;
+				margin-top:0.28rem;
+			}
+			.real{
+				margin-bottom: 0.6rem;
+			}
+			.shoot{
+				width: 7rem;
+				height:3.2rem;
+				background: #FFFFFF;
+				margin:0.28rem auto 0;
+				padding:0.32rem 0;
+				box-sizing: border-box;
+			}
+			.shoot_img{
+				width:4.28rem;
+				height:2.56rem;
+				margin:0 auto;
+				position:relative;
+			}
+			.shoot_img>img{
+				width:4.28rem;
+				height:2.56rem;
+			}
+			.shoot_pat{
+				width: 2.64rem;
+				position: absolute;
+				top:0.52rem;
+				left:50%;
+				margin-left:-1.32rem;
+			}
+			.shoot_the{
+				width:0.9rem;
+				height:0.9rem;
+				margin:0 auto;
+				position:relative;
+			}
+			.shoot_the>img{
+				width:0.9rem;
+				height:0.9rem;
+			}
+			.shoot_the>input{
+				width:0.9rem;
+				height:0.9rem;
+				position:absolute;
+				top:0rem;
+				left:0rem;
+				opacity: 0;
+			}
+			.shoot_pat>p{
+				color:#999;
+				font-size: 0.28rem;
+				line-height: 1;
+				margin-top:0.14rem;
+			}
+			.real_all>form>.ok{
+				width:5.9rem;
+				height:0.79rem;
+				background:#6B75FF;
+				display: block;
+				border:0;
+				margin:1.1rem auto;
+				color:#FFFFFF;
+				border-radius: 1.25rem!important;
+			}
+			.real_all>form>.ok:active{
+				background:rgba(230,0,18,1)!important;
+				border:0!important;
+			}
+			form>p{
+				color: #333333;
+				font-weight: bold;
+				text-align: center;
+				margin-top: 0.4rem;
+				margin-bottom: 0.1rem;
+			}
+			form>.name,form>.Idcard{
+				display: block;
+				border: 0.01rem solid #E2E2E2;
+				width: 90%;
+				height:0.8rem;
+				border-radius: 1.25rem!important;
+				margin: 0 auto;
+				font-size: 0.3rem;
+				padding-left: 0.3rem;
+			}
+			.phone_num{
+				display: block;
+				border: 0.01rem solid #E2E2E2;
+				width: 90%;
+				height:0.8rem;
+				border-radius: 1.25rem!important;
+				margin: 0 auto;
+				font-size: 0.3rem;
+				padding-left: 0.3rem;
+			}
+			.message{
+    text-align: center;
+    color: red;
+		margin: 0;		
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			<img class="img_1" src="__INDEX__/img/img_top_back.png" onclick="back()" alt="">
+			<span>实名认证</span>
+		</div>
+		<div class="real_all">
+			<form action="{:url('member/realName')}" name="forma" onsubmit="return sub()" method="post" enctype="multipart/form-data">                           
+				<p>姓名</p>
+				<input type="text" class="name"   name="userName" value="{$userInfoData['userName']}" onblur="nam(this)" />
+				<p class="message" id="msg1"></p>
+				<p>电话号码</p>
+				<input type="text" class="phone_num" id="phoneNum" name="phone" maxlength="11" value="{$userInfoData['phone']}" onblur="phone(this)" />
+				<p class="message" id="msg2"></p>
+				<p>身份证</p>
+				<input type="text" class="Idcard" name="IDCardNum" maxlength="18" value="{$userInfoData['IDCardNum']}" onblur="sfz(this)" />
+				<p class="message" id="msg3"></p>
+				<p>上传身份证照片</p>				
+				<div class="shoot">
+					<div class="shoot_img">
+						<img src="__INDEX__/img/shoot_02.png" alt="">
+						<div class="shoot_pat">
+							<div class="shoot_the">
+								<img src="__INDEX__/img/camera.png" alt="">
+								<!--<img src="{$userInfoData['IDCardQ']?'__uploads__'.$userInfoData['IDCardQ']:'__INDEX__/img/shoot_02.png'}" alt="">-->
+								<input type="file" class="imgtwo" name="IDCardQ" accept="image/*">
+							</div>
+							<p>点击拍摄/上传国徽面</p>
+						</div>
+					</div>
+				</div>
+				<div class="shoot">
+					<div class="shoot_img">
+						<img src="__INDEX__/img/shoot_01.png" alt="">
+						<div class="shoot_pat">
+							<div class="shoot_the">
+								<img src="__INDEX__/img/camera.png" alt="">
+								<input type="file" class="imgone" name="IDCardH" accept="image/*">
+							</div>
+							<p>点击拍摄/上传人像面</p>
+						</div>
+					</div>
+				</div>
+				<input type="submit" value="确定" <?php if($userSm == 1 || $userInfoData['status'] == 2 ){echo 'disabled=disabled' ;} ?> class="ok">
+			</form>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			$(".imgone").change(function(){
+				$(".imgone").parents('.shoot_img').children('img').attr("src",URL.createObjectURL($(this)[0].files[0]));
+			});
+			$(".imgtwo").change(function(){
+				$(".imgtwo").parents('.shoot_img').children('img').attr("src",URL.createObjectURL($(this)[0].files[0]));
+			});
+			if($(".ok").attr("disabled") == "disabled"){
+				$(".ok").css("background-color","#999");
+			}
+		})
+		function back () {
+			window.location.href="http://cc.jwhcx.com/index.php/index/member"
+		}
+
+function sub(){
+ if(nam(".name") == true && phone(".phone_num") == true&& sfz(".Idcard") == true){
+  alert('提交成功！等待后台审核！！！');
+  return true;
+ }else{
+  return false;
+ }
+ }
+function nam(obj){
+        var type = /^[\u4E00-\u9FA5]{2,4}$/;
+        if($(obj).val() == "" || !(type.test($(obj).val()))){
+            $(obj).addClass("error");
+            $("#msg1").text("请输入正确姓名");
+            return false;
+        }else{
+            $(obj).removeClass("error");
+            $("#msg1").text("");
+            return true;
+        }
+    }
+ function phone(obj){
+        var type = /^(0|86|17951)?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+        if($(obj).val() == "" || !(type.test($(obj).val()))){
+            $(obj).addClass("error");
+            $("#msg2").text("请输入正确的手机号码");
+            return false;
+        }else{
+            $(obj).removeClass("error");
+            $("#msg2").text("");
+            return true;
+        }
+    }
+ function sfz(obj){
+        var type =  /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        if($(obj).val() == "" || !(type.test($(obj).val()))){
+            $(obj).addClass("error");
+            $("#msg3").text("请输入正确的身份证号码");
+            return false;
+        }else{
+            $(obj).removeClass("error");
+            $("#msg3").text("");
+            return true;
+        }
+    }
+</script>
+</html>

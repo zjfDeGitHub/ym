@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<link href="__INDEX__/css/mui.min.css" rel="stylesheet"/>
+		<link href="__INDEX__/css/mui.min.css" rel="stylesheet"/>
+		<script type="text/javascript" src="__INDEX__/js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="__INDEX__/js/public_phone.js"></script>
+		<title></title>
+		<style>
+			body{
+				background-color: #FFFFFF;
+			}
+			.nav{
+				width: 100%;
+				height:0.88rem;
+				background: #FFFFFF;
+				position:relative;
+			}
+			.nav>a{
+				width: 0.2rem;
+				height:0.36rem;
+				position:absolute;
+				top:0.26rem;
+				left:0.4rem;
+			}
+			.nav>a>img{
+				width: 0.2rem;
+				height:0.36rem;
+				display: block;
+			}
+			.nav>span{
+				display: block;
+				color:#323232;
+				font-size: 0.34rem;
+				line-height: 0.88rem;
+				text-align: center;
+				font-weight: bold;
+			}
+			.content>ul{
+				padding: 0;
+				margin: 0.2rem 0.1rem;
+			}
+			.content>ul>li{
+				list-style: none;
+				display: flex;
+				align-items: center;
+				margin-bottom: 0.2rem;
+			}
+			.content>ul>li>div{
+				flex: 1;
+				text-align: center;
+				font-size: 0.25rem;
+			}
+			.title{
+				display: flex;
+				margin-top: 0.2rem;
+			}
+			.title>p{
+				flex: 1;
+				text-align: center;
+				/* font-size: 0.28rem; */
+			}
+			div.on{
+				color:#a5abb1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			<a href="{:url('/index/member/embody')}"><img src="__INDEX__/img/img_top_back.png" alt=""></a>
+			<span>账单</span>
+		</div>
+		<div class="content">
+			<div class="title">
+				<p>订单号</p>
+				<p>提现豆子</p>
+				<p>到账金额</p>
+				<p>时间</p>
+				<p>状态</p>
+			</div>
+			<ul>
+            {volist name="orderdata" id="vo"}
+            <li>
+               <div>{$vo['emcode']}</div>
+               <div>{$vo['txbeans']}</div>
+               <div>{$vo['txmoney']}</div>
+               <div>{$vo['time']}</div>
+               <div class="message">{$vo['status']}</div>
+            </li>
+            {/volist}
+         	</ul>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function(){
+			var kk=$(".content>ul>li").length;	
+			for(var i=0;i<kk;i++){
+				var mess=$("li").eq(i).children(".message").text();
+				if(mess=="等待确认"){
+				$("li").eq(i).children(".message").addClass("on");
+				}else{
+				$("li").eq(i).children(".message").removeClass("on");	
+				}
+			}		
+		})
+	</script>
+</html>

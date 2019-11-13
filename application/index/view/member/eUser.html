@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+	<title>修改昵称</title>
+	<link href="__INDEX__/css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="__INDEX__/css/public_phone.css">
+	<link rel="stylesheet" href="__INDEX__/css/per_change_nickname.css">
+	<script type="text/javascript" src="__INDEX__/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="__INDEX__/js/public_phone.js"></script>
+</head>
+<body>
+<div class="nav">
+	<a href="javascript:history.back(-1)"><img src="__INDEX__/img/img_top_back.png" alt=""></a>
+	<span>修改昵称</span>
+</div>
+<div class="nickname">
+	<form action="{:url('member/edituser')}" enctype="multipart/form-data"  onsubmit="return sub()" method="post">
+		<div class="nick_one">
+			<div class="tx">
+				<p>修改头像</p>
+				<input type="file" name="image" />
+			</div>
+			<input type="text" placeholder="输入修改的昵称" class="uname" onblur="petname(this)" value="{$oldUserData['username']}" name="username">
+			<div class="mean_two">
+				<a href="javascript:;">
+					<span>性别</span>
+					<div class="set_right">
+						<div class="right_text">
+							<select name="sex" class="checksex">
+								<option value ="1" <?php if($oldUserData['sex']==1){ echo "selected=selected" ;} ?> >男</option>
+								<option value ="2" <?php if($oldUserData['sex']==1){ echo "selected=selected" ;} ?> >女</option>
+							</select>
+						</div>
+						<img src="__INDEX__/img/img_right.png" alt="">
+					</div>
+				</a>
+			</div>
+			<input type="text" placeholder="输入修改的手机号码" class="phone" value="{$oldUserData['phone']}" onblur="elphone(this)" name="phone">
+			<p>
+				<input type="password" id="password" placeholder="输入新密码(密码6到16字符)" class="passwd" onblur="pwd(this)">
+				<a href="#" id="passwordeye" class="invisible"></a>
+			</p>
+			<p>
+				<input type="password" placeholder="确认新密码" class="qrpasswd" onblur="qrpwd(this)" name="password">
+				<a href="#" id="eye" class="invisible"></a>
+			</p>
+
+			<i></i>
+		</div>
+		<p class="message"></p>
+		<input type="submit" value="保存">
+	</form>
+</div>
+</body>
+<script>
+    $(function(){
+        $('.nick_one').on('click','i',function(){
+            $(this).siblings('input').val('');
+        })
+        var passwordeye = $('#passwordeye');
+        var showPwd = $("#password");
+        passwordeye.off('click').on('click',function(){
+            if(passwordeye.hasClass('invisible')){
+                passwordeye.removeClass('invisible').addClass('visible');//密码可见
+                showPwd.prop('type','text');
+            }else{
+                passwordeye.removeClass('visible').addClass('invisible');//密码不可见
+                showPwd.prop('type','password');
+            };
+        });
+        var eye = $('#eye');
+        var qrpwd = $(".qrpasswd");
+        eye.off('click').on('click',function(){
+            if(eye.hasClass('invisible')){
+                eye.removeClass('invisible').addClass('visible');//密码可见
+                qrpwd.prop('type','text');
+            }else{
+                eye.removeClass('visible').addClass('invisible');//密码不可见
+                qrpwd.prop('type','password');
+            };
+        });
+    })
+    function petname(obj){
+        // var type = /^[a-zA-Z][a-zA-Z0-9_-]{0,19}$/;
+        if($(obj).val() == ""){
+            $(obj).addClass("error");
+            $(".message").text("请输入正确的昵称");
+            return false;
+        }else{
+            $(obj).removeClass("error");
+            $(".message").text("");
+            return true;
+        }
+    }
+    function elphone(obj){
+        var type = /^(0|86|17951)?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+        if($(obj).val() == "" || !(type.test($(obj).val()))){
+            $(obj).addClass("error");
+            $(".message").text("请输入正确的手机号码");
+            return false;
+        }else{
+            $(obj).removeClass("error");
+            $(".message").text("");
+            return true;
+        }
+    }
+    function pwd(obj){
+        var type = /[\da-zA-Z]{6,16}/;
+        if($(obj).val() == "" || !(type.test($(obj).val()))){
+            $(obj).addClass("error");
+            $(".message").text("请输入正确的密码");
+            return false;
+        }else{
+            $(obj).removeClass("error");
+            $(".message").text("");
+            return true;
+        }
+    }
+    function qrpwd(obj){
+        if($(obj).val() == "" || $(".passwd").val() != $(obj).val()){
+            $(obj).addClass("error");
+            $(".message").text("请确认新密码");
+            return false;
+        }else{
+            $(obj).removeClass("error");
+            $(".message").text("");
+            return true;
+        }
+    }
+    function sub(){
+        if(petname(".uname") == true && elphone(".phone") == true && pwd(".passwd") == true && qrpwd(".qrpasswd") == true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</html>

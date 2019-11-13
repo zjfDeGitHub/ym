@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="__INDEX__/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+			}
+			.zd{
+				position: absolute;
+    top: 0.22rem;
+    right: -2.5rem;
+    font-size: 0.3rem;
+    color: #999;
+    width: 4rem;
+			}
+			.aui-title{
+				width: 100%;
+				display: flex;
+				align-items: center;
+				position: fixed;
+				top:0;
+				margin-top:0.2rem;
+			}
+			.a_1{
+				width: 8%;
+			}
+			.aui-title>a>img{
+				width:100%;
+			}
+			.aui-title>p{
+				margin: 0 auto;
+				font-weight: bold;
+				color: #202020;
+			}
+			form{
+				margin-top: 0.5rem;
+			}
+			.select{
+				display: flex;
+				margin-top: 0.4rem;
+			}
+			div.on{
+				border:1px solid rgba(255,107,107,1) !important;
+				color: #FF6B6B;
+			}
+			form>.t1{
+				color: #CCCCCC;
+				font-size: 0.23rem;
+				margin: 0;
+				margin-left:0.3rem;
+				padding-top: 0.7rem;
+			}
+			.select>div{
+				width: 1.8rem;
+				height: 1rem;
+				border: 1px solid #CCCCCC;
+				border-radius: 8px;
+				margin-left: 0.35rem;
+				line-height: 1rem;
+				text-align: center;
+			}
+			form>.t2{
+				color: #9B9B9B;
+				font-size: 0.23rem;
+				margin: 0;
+				margin-left: 0.3rem;
+				padding-top: 0.4rem;
+			}
+			form>.t3{
+				margin-left: 0.3rem;
+				font-size: 0.23rem;
+			}
+			form>.t3>input{
+				width: 5.5rem;
+				height: 0.7rem;
+				border: none;
+				font-size: 0.23rem;
+			}
+			form>.t4{
+				width: 7rem;
+				color: #9B9B9B;
+				font-size: 0.25rem;
+				margin-top: 1rem;
+				margin-left: 0.3rem;
+				border-bottom: 0.01rem solid #CCCCCC;
+				padding-bottom: 0.2rem;
+			}
+			form>.t5{
+				width: 7rem;
+				margin-left: 0.3rem;
+				border-bottom: 0.01rem solid #CCCCCC;
+				display: flex;
+				align-items: center;	
+			}
+			form>.t5>img{
+				width: 0.4rem;
+				height: 0.4rem;
+			}
+			form>.t5>p{
+				font-size: 0.3rem;
+				font-weight: bold;
+				margin-left: 0.2rem;
+			}
+			form>input{
+				border: none;
+				width: 6rem;
+				height: 1rem;
+				color: #FFFFFF;
+				background-color: #FF6B6B;
+				display: block;
+				margin: 0 auto;
+				margin-top: 0.6rem;
+				text-align: center;
+				font-size: 0.3rem;
+			}
+			.content>p{
+				color: #9B9B9B;
+				font-size: 0.25rem;
+				line-height: 0.5rem;
+				padding: 0 0.2rem;
+				margin-top: 0.8rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="aui-title">
+				<a class="a_1" href="{:url('/index/member/index')}">
+				<img src="__INDEX__/img/back.png" />
+				</a>
+				<p>会员、余额充值</p>
+				<a href="{:url('/index/member/reOrder')}" class="zd">我的账单</a>
+			</div>
+			<form >
+				<p class="t1">请选择充值会员套餐</p>
+				<div class="select">
+					<div>青春达人</div>
+					<div>时尚达人</div>
+					<div>魅力达人</div>
+				</div>
+				<p class="t2">请输入其他金额</p>
+				<p class="t3">
+					<span>金额：</span>
+					<input type="text" placeholder="请输入其他金额，普通充值:1元等于1购物金"/>
+					<span>元</span>
+				</p>
+				<p class="t4">支付方式</p>
+				<div class="t5">
+					<img src="__INDEX__/img/photo.png" />
+					<p class="d1">RMB：¥<span>199</span></p>
+				</div>
+				<input  value="确认充值" id="sub"/>
+			</form>
+			<p>温馨提示<br/>
+				1.兑换比例：1：1<br/>
+				2.我们强烈建议您是在登录的情况下充值，这样方便数据同步和
+				及时兑换、提现。<br/>
+				3.如购买后有异常情况，请及时联系客服人员。<br/>
+			</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		(function(designWidth, maxWidth) {
+		var doc = document,
+		win = window,
+		docEl = doc.documentElement,
+		remStyle = document.createElement("style"),
+		tid;
+	
+		function refreshRem() {
+			var width = docEl.getBoundingClientRect().width;
+			maxWidth = maxWidth || 540;
+			width>maxWidth && (width=maxWidth);
+			var rem = width * 100 / designWidth;
+			remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+		}
+	
+		if (docEl.firstElementChild) {
+			docEl.firstElementChild.appendChild(remStyle);
+		} else {
+			var wrap = doc.createElement("div");
+			wrap.appendChild(remStyle);
+			doc.write(wrap.innerHTML);
+			wrap = null;
+		}
+		//要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+		refreshRem();
+	
+		win.addEventListener("resize", function() {
+			clearTimeout(tid); //防止执行两次
+			tid = setTimeout(refreshRem, 300);
+		}, false);
+	
+		win.addEventListener("pageshow", function(e) {
+			if (e.persisted) { // 浏览器后退的时候重新计算
+				clearTimeout(tid);
+				tid = setTimeout(refreshRem, 300);
+			}
+		}, false);
+	
+		if (doc.readyState === "complete") {
+			doc.body.style.fontSize = "16px";
+		} else {
+			doc.addEventListener("DOMContentLoaded", function(e) {
+				doc.body.style.fontSize = "16px";
+			}, false);
+		}
+	})(750, 750);
+
+        $(function(){
+            var i;
+            var mumber=" ";;
+            var type=2;
+            $(".select>div").click(function(){
+                i=$(this).index();
+                $(this).addClass("on").siblings("div").removeClass("on");
+                $(".t3>input").val()=="";
+                if(i==0){
+                    type=1;
+                    mumber=1;
+                    $(".t5").children("p").children("span").text("199");
+                }
+                else if(i==1){
+                    type=1;
+                    mumber=2;
+                    $(".t5").children("p").children("span").text("299");
+                }
+                else if(i==2){
+                    type=1;
+                    mumber=3;
+                    $(".t5").children("p").children("span").text("599");
+                }
+                else{
+                    type=2;
+                }
+            })
+            $(".t3>input").change(function(){
+                var txt=$(this).val();
+                $(".t5").children("p").children("span").text(txt);
+                type=2;
+                mumber=0;
+            })
+            $("#sub").click(function(){
+                var mon=$(".t5").children("p").children("span").text();
+                console.log(mon);
+                console.log(type);
+                console.log(mumber);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('/index/member/recharge')}",
+                data: {
+						mon: mon,
+						member:mumber,
+						type:type
+				},
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                success: function(response) {
+                    // alert(response);
+					if (response == 'no'){
+					    alert('不能重复充值会员');
+					}
+					console.log(response);
+					window.location.href="{:url('/index/member/confirm')}";
+                },
+                timeout: 14400000, // 设置请求超时时间（毫秒）。此设置将覆盖全局设置。
+                error: function(XMLHttpRequest, errMes, exception) {
+                    console.log(exception);
+                },
+                dataType: "json"
+            });
+		})
+		
+	})	
+		</script>
+</html>

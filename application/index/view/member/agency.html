@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人主页</title>
+		<style>
+			body{
+				margin: 0;
+				background-color: #06022E;
+			}
+			.aui-title{
+				width: 100%;
+				height:1.375rem;
+				display: flex;
+				align-items: center;
+				right:0;			
+			}
+			.aui-title>.back{
+				z-index: 50;
+				width:0.6rem;
+				height: 0.6rem;
+			}
+			.aui-title>.back>img{
+				width:100%;
+			}
+			.aui-title>.dl{
+				color: #333;
+				z-index: 5;
+				margin-left: 5.5rem;
+				font-weight: bold;
+				text-decoration: none;
+				font-size: 0.32rem;
+			}
+			.top{
+				padding-top: 0.3rem;
+				padding-bottom: 1rem;
+				position: absolute;
+				/* border-bottom-left-radius: 20%;
+				border-bottom-right-radius: 20%; */
+			}
+			.top>.photo{
+				width: 0.5rem;
+				height: 0.5rem;
+				border-radius: 50%;
+				margin: 0 auto;
+			}
+			.top>.photo>img{
+				width: 100%;
+				height: 100%;
+			}
+			.top>.name{
+				font-size: 0.4rem;
+				font-weight: bold;
+				color: #202020;
+				text-align: center;
+			}
+			.top>.title{
+				display: flex;
+				width: 7.5rem;
+			}
+			.top>.title>div{
+				flex: 1;
+			}
+			.top>.title>div>p:nth-of-type(1){
+				font-size: 0.35rem;
+				margin: 0;
+				text-align: center;
+			}
+			.top>.title>div>p:nth-of-type(2){
+				font-size: 0.2rem;
+				margin: 0;
+				color: #808080;
+				text-align: center;
+			}
+			.myteam{
+				position: absolute;
+				margin-top: 0.6rem;
+			}
+			.team{
+				width: 0.8rem;
+				height:0.8rem;
+				background:rgba(242,177,26,1);
+				border-radius:50%;
+				margin-left: 3.4rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.team_name{
+				font-size: 0.1rem;
+				color: #FFFFFF;
+				margin-left: 3.3rem;
+			}
+			ul{
+				padding: 0;
+				position: absolute;
+				margin-top:4.6rem;
+			}
+			ul>li{
+				width: 7rem;
+				height: 1.2rem;
+				margin-left: 0.23rem;
+				background:rgba(55,34,68,1);
+				display: flex;
+				align-items: center;
+				margin-bottom: 0.2rem;			
+			}
+			ul>li>.head{
+				width: 0.8rem;
+				height: 0.8rem;
+				border-radius: 50%;
+				overflow: hidden;
+				margin-left: 0.1rem;
+			}
+			ul>li>.head>img{
+				width: 100%;
+				height: 100%;
+			}
+			ul>li>div>p{
+				float: left;
+				font-size: 0.2rem;
+				color: #FFFFFF;
+				margin-left: 0.2rem;
+			}
+			ul>li>div>p>span{
+				color: #F0FF17;
+			}
+			ul>li>div>p:nth-of-type(1){
+				padding-right: 0.2rem;
+				border-right: 0.01rem solid #FFFFFF;
+			}
+			header>img{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<header>
+				<img src="__INDEX__/img/bg3.png" />
+				<div class="aui-title">
+					<a href="{:url('/index/member/index')}" class="back">
+					<img src="__INDEX__/img/back.png"  />
+					</a>
+					<a href="{:url('/index/member/getAgency')}" class="dl">成为代理</a>
+				</div>
+				<div class="top">
+					<div class="photo">
+						<img src="__INDEX__/img/photo.png" />
+					</div>
+					<p class="name">{$userData['username']}</p>
+					<div class="title">
+						<div>
+							<p>¥0.00</p>
+							<p>代理收入</p>
+						</div>
+						<div>
+							<p>{$userData['level']}</p>
+							<p>代理等级</p>
+
+						</div>
+						<div>
+							<p>{$userData['ratio']}</p>
+							<p>代理比例</p>
+						</div>
+					</div>
+					<div class="myteam">
+						<div class="team">
+							<img src="__INDEX__/img/daili.png" />
+						</div>
+						<!--<p class="team_name">代理团队</p>-->
+					</div>
+				</div>
+			</header>
+			<ul>
+				{volist name='agencyData' id='vo'}
+				<li>
+					<div class="head">
+						<img src="__INDEX__/img/20140917095434_aZm2R.png" />
+					</div>
+					<div>
+						<p>{$vo.username}:金额：<span>¥{$vo.consumption}</span></p>
+						<p>所有下级金额总合：：<span>¥{$vo.mun}</span></p>
+					</div>
+				</li>
+				{/volist}
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function tz() {
+		    alert('12312');
+            window.location.href="{:url('/index/member/index')}";
+        }
+		(function(designWidth, maxWidth) {
+		var doc = document,
+		win = window,
+		docEl = doc.documentElement,
+		remStyle = document.createElement("style"),
+		tid;
+	
+		function refreshRem() {
+			var width = docEl.getBoundingClientRect().width;
+			maxWidth = maxWidth || 540;
+			width>maxWidth && (width=maxWidth);
+			var rem = width * 100 / designWidth;
+			remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+		}
+	
+		if (docEl.firstElementChild) {
+			docEl.firstElementChild.appendChild(remStyle);
+		} else {
+			var wrap = doc.createElement("div");
+			wrap.appendChild(remStyle);
+			doc.write(wrap.innerHTML);
+			wrap = null;
+		}
+		//要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+		refreshRem();
+	
+		win.addEventListener("resize", function() {
+			clearTimeout(tid); //防止执行两次
+			tid = setTimeout(refreshRem, 300);
+		}, false);
+	
+		win.addEventListener("pageshow", function(e) {
+			if (e.persisted) { // 浏览器后退的时候重新计算
+				clearTimeout(tid);
+				tid = setTimeout(refreshRem, 300);
+			}
+		}, false);
+	
+		if (doc.readyState === "complete") {
+			doc.body.style.fontSize = "16px";
+		} else {
+			doc.addEventListener("DOMContentLoaded", function(e) {
+				doc.body.style.fontSize = "16px";
+			}, false);
+		}
+	})(750, 750);
+		</script>
+</html>

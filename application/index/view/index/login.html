@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="referrer" content="no-referrer">
+		<meta charset="UTF-8">
+		<title>Medical Block嫕美国际</title>
+		<!--<script src="__INDEX__/js/login.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="__INDEX__/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body{
+			background: #fff;
+			    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background-size: cover;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+			-webkit-appearance: none;
+		}
+		header{
+			position: relative;
+		}
+		.zhuce{
+			position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: #4269F2;
+		}
+		.bbox{
+			/*text-align: center;*/
+			position: relative;
+			    text-align: center;
+    margin: 1rem 1rem 3rem 1rem;
+		}
+		#zhanghao{
+			width: 80%;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    border-bottom: 0.1rem solid #FFFFFF;
+        border-bottom: 0.01rem #c4c4c4 solid
+}
+#mima{
+	width: 80%;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    border-bottom: 0.1rem solid #FFFFFF;
+        border-bottom: 0.01rem #c4c4c4 solid
+}
+.p_box{
+	position: relative;
+}
+.p_box p{
+	color: #2E5EE4;
+    font-size: 0.8rem;
+    position: absolute;
+	right: 3rem;
+}
+.btn_box{
+	text-align: center;
+}
+.btn_box input{
+	width: 80%;
+    height: 2rem;
+    border-radius: 15px;
+    background: #4269F2;
+    border: none;
+    color: #fff;
+    margin-top:3.5rem ;
+}
+.logo{
+	text-align: center;
+	margin: 0 0.5rem;
+	
+}
+.logo img{
+	width: 50%;
+}
+	</style>
+	<body>
+		<header>
+			<div class="aui-title" style=" line-height: 4.5rem; width:100%; text-align: center;font-size:1.2rem;color: #202020;">登录账号</div>
+			<a href="{:url('index/index')}"><div class="zhuce">
+				注册
+			</div></a>
+		</header>
+		<div class="logo"> <img src="__INDEX__/img/ymlogo.png"/></div>
+		<form action="{:url('/index/index/login')}" method="post">
+		<div class="bbox">
+			<input type="text" name="username"  id="zhanghao" value="" placeholder="输入用户名"/>
+			<input type="password" name="password" id="mima" value="" placeholder="输入密码"/><br />
+
+		</div>
+
+		<div class="p_box"><p>忘记密码?</p></div>
+		<div class="btn_box">
+			<input class="btn btn-primary btn-block" value="确定" type="submit">
+			<!--<input type="submit" name="" id="loginbtn" value="确定" />-->
+		</div>
+		</form>
+	</body>
+	<!--<script type="text/javascript">-->
+        <!--var username;-->
+        <!--var pass;-->
+        <!--$(function() {-->
+            <!--$('#loginbtn').click(login);-->
+        <!--})-->
+        <!--/** 登录 */-->
+        <!--function login() {-->
+            <!--username = $('#zhanghao').val();-->
+            <!--pass = $('#mima').val();-->
+            <!--var dataXml = '{"username":"' + $('#zhanghao').val() + '","password":"' + $('#mima').val() + '"}';-->
+            <!--console.log(dataXml)-->
+            <!--$.ajax({-->
+                <!--type: 'POST',-->
+                <!--url: "{:url('/index/index/tet')}",-->
+                <!--dataType: "json",-->
+                <!--data: {-->
+                    <!--data: dataXml-->
+                <!--},-->
+                <!--contentType: "application/x-www-form-urlencoded; charset=UTF-8",-->
+                <!--success: function(response) {-->
+                   <!--console.log(response);-->
+                <!--},-->
+                <!--timeout: 14400000, // 设置请求超时时间（毫秒）。此设置将覆盖全局设置。-->
+                <!--error: function(XMLHttpRequest, errMes, exception) {-->
+                    <!--console.log(XMLHttpRequest);console.log(errMes);console.log(exception);-->
+				<!--},-->
+
+            <!--});-->
+
+        <!--}-->
+	<!--</script>-->
+</html>

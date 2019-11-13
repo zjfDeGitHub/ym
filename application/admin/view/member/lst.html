@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title></title>
+    <script src="__ADMIN__/style/jquery-2.1.4.js"></script>
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <script src="__ADMIN__/style/xlPaging.js"></script>     
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    <link href="__ADMIN__/style/adminfenye.css" rel="stylesheet">
+</head>
+<style>
+    .li_img{
+        width: 100px;
+        height: 100px;
+        z-index: 100;
+    }
+    .text{
+        height: 25px;
+        margin-bottom: 10px;
+        padding-left: 5px;
+    }
+    .search{
+        width: 50px;
+        height: 20px;
+        font-size: 12px;
+        border: none;
+        background-color: rgb(45, 195, 232);
+        color: #ffffff;
+        border-radius:3px;
+        margin-left: 5px;
+
+    }
+</style>
+ <style>
+        #page1 {
+            margin: 20px auto;
+            color: #666;
+            display: block;
+            text-align: center;
+        }
+
+        #page1 li {
+            display: inline-block;
+            min-width: 30px;
+            height: 28px;
+            cursor: pointer;
+            color: #666;
+            font-size: 13px;
+            line-height: 28px;
+            background-color: #f9f9f9;
+            border: 1px solid #dce0e0;
+            text-align: center;
+            margin: 0 4px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .xl-nextPage,
+        .xl-prevPage {
+            width: 60px;
+            color: #0073A9;
+            height: 28px;
+        }
+
+        #page1 li.xl-disabled {
+            opacity: .5;
+            cursor: no-drop;
+        }
+		
+		#page1 li.xl-disabled:hover{
+			background-color: #f9f9f9 !important;
+            border: 1px solid #dce0e0 !important;
+			color: #666 !important;
+		}
+
+        #page1 li.xl-active {
+            background-color: #0073A9;
+            border-color: #0073A9;
+            color: #FFF
+        }
+		
+		#page1 li:hover{
+			background-color: #0073A9 !important;
+            border-color: #0073A9;
+            color: #FFF
+		}
+		
+		 #page1 li.xl-jumpText {
+		    background-color: rgba(0,0,0,0);
+			border-color: rgba(0,0,0,0);
+			opacity: 1;
+		}
+		
+		#page1 li.xl-jumpText:hover{
+			background-color: rgba(0,0,0,0) !important;
+			border-color: rgba(0,0,0,0) !important;
+		}
+		
+		#page1 li.xl-jumpButton{
+			padding: 0 5px;
+		}
+		
+		#xlJumpNum {
+			width: 35px;
+			margin: 0 3px;
+		}
+		input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+			-webkit-appearance: none !important;
+		}
+		input[type="number"]{
+			-moz-appearance:textfield;
+		}
+		
+    </style>
+<body>
+	<!-- 头部 -->
+	{include file="common/top"}
+
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			            <!-- Page Sidebar -->
+            {include file="common/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                                        <li>
+                        <a href="#">系统</a>
+                    </li>
+                     <li class="active">会员管理</li>
+                      </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<!--<button type="button" tooltip="添加会员" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '/admin/user/add.html'"> <i class="fa fa-plus"></i> Add-->
+<!--</button>-->
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <form action="{:url('member/lst')}" method="post">
+                            <input type="text" name="value" class="text"/>
+                            <select name="type">
+                                <option value="username">会员名称</option>
+                                <!--<option value="rcode">订单编号</option>-->
+                            </select>
+                            <input type="submit" value="搜索" class="search"/>
+                        </form>
+                        <a  href="{:url('member/lst')}"><input type="button" value="清空" class="search"/></a>
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">会员编号</th>
+                                <th class="text-center">会员名称</th>
+                                <th class="text-center">代理等级</th>
+                                <th class="text-center">电话</th>
+                                <th class="text-center">会员等级</th>
+                                <th class="text-center">消费金额</th>
+                                <th class="text-center">获得青春豆</th>
+                                <th class="text-center">会员青春豆</th>
+                                <th class="text-center">推荐人</th>
+                                <th class="text-center">是否实名</th>
+                                <th class="text-center">操作</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="data" id="vo"}
+                        <tr>
+                            <td align="center">{$vo['id']}</td>
+                            <td align="center"><a class="btn btn-primary btn-sm shiny" href="{:url('member/userBeansLst',['id'=>$vo['id']])}">{$vo['username']}</a></td>
+                            <td align="center">{$vo['level']}</td>
+                            <td align="center">{$vo['phone']}</td>
+                            <td align="center">{$vo['memberName']}</td>
+                            <td align="center">{$vo['consumption']}</td>
+                            <td align="center">{$vo['beans']}</td>
+                            <td align="center">{$vo['mbeans']}</td>
+                            <td align="center">{$vo['pid']}</td>
+                            <td align="center">{$vo['isSm']}</td>
+                            <td align="center">
+                                <a href="{:url('editUser',['id'=>$vo['id']])}" class="btn btn-primary btn-sm shiny">
+                                    <i class="fa fa-edit"></i> 编辑
+                                </a>
+                                <a  onClick="warning('{:url('delUser',['id'=>$vo['id']])}')" class="btn btn-danger btn-sm shiny">
+                                <i class="fa fa-trash-o"></i> 删除
+                                </a>
+                            </td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                    <!--<a href="#" onClick="warning('确实要删除吗', '/admin/user/del/id/6.html')" class="btn btn-danger btn-sm shiny">-->
+                                    <!--<i class="fa fa-trash-o"></i> 编辑-->
+                                <!--</a>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+                	<div id="page1"></div>
+            </div>
+            <!-- /Page Content -->
+		</div>
+	</div>
+
+	    <!--Basic Scripts-->
+    <!--<script src="style/jquery_002.js"></script>
+    <script src="style/bootstrap.js"></script>
+    <script src="style/jquery.js"></script>
+    <script src="style/beyond.js"></script>-->
+<script type="text/javascript">
+	function warning (a) {
+		var url='http://cc.jwhcx.com'+a;
+		if(window.confirm('确定？')){
+			window.location.href = url;
+     //alert("确定");
+     
+}
+	}
+	    // xlPaging.js 使用方法
+    $("#page1").paging({
+        nowPage:{$pageIn} , // 当前页码
+        pageNum: {$pageLen}, // 总页码
+        buttonNum: 6, //要展示的页码数量
+		canJump: 1,// 是否能跳转。0=不显示（默认），1=显示
+		showOne: 0,//只有一页时，是否显示。0=不显示,1=显示（默认）
+        callback: function (num) { //回调函数
+            console.log(num);
+            aaa(num)
+        }
+    });
+    function aaa (num) {
+    	var a=num-1;
+    	$.ajax({
+  async:false,
+  data:{a},
+  type:"POST",
+  url:"{:url('member/lst')}",
+  dataType:"JSON",
+  success: function(data){
+  	var html;
+		$('.table').html('');
+		html+= '<thead class="">'+
+                            '<tr>'+
+                                '<th class="text-center">会员编号</th>'+
+                                '<th class="text-center">会员名称</th>'+
+                                '<th class="text-center">代理等级</th>'+
+                                '<th class="text-center">电话</th>'+
+                                '<th class="text-center">会员等级</th>'+
+                                '<th class="text-center">消费金额</th>'+
+                                '<th class="text-center">获得青春豆</th>'+
+                               ' <th class="text-center">会员青春豆</th>'+
+                               ' <th class="text-center">推荐人</th>'+
+                               ' <th class="text-center">操作</th>'+
+
+                            '</tr> </thead>'+'<tbody>{volist name="data" id="vo"}'+'<tr>'+
+				 '<td align="center">{$vo['id']}</td>'+
+                 '<td align="center"><a class="btn btn-primary btn-sm shiny" href="{:url('member/userBeansLst',['id'=>$vo['id']])}">{$vo['username']}</a></td>'
+                            +'<td align="center">{$vo['level']}</td>'
+                            +'<td align="center">{$vo['phone']}</td>'
+                            +'<td align="center">{$vo['memberName']}</td>'
+                            +'<td align="center">{$vo['consumption']}</td>'
+                            +'<td align="center">{$vo['beans']}</td>'
+                            +'<td align="center">{$vo['mbeans']}</td>'
+                            +'<td align="center">{$vo['pid']}</td>'
+                            +'<td align="center">'
+                                +'<a href="{:url('editUser',['id'=>$vo['id']])}" class="btn btn-primary btn-sm shiny">'
+                                    +'<i class="fa fa-edit"></i> 编辑 </a> </td></tr>'+'{/volist}</tbody>'                                    
+                                 $('.table').append(html);
+   }
+ });
+    }
+    
+</script>
+</body></html>

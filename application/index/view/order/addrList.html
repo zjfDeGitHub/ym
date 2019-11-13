@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class="box">
+    <select name="province" class="province"></select>
+    <select name="city" class="city"></select>
+    <select name="area" class="area"></select>
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="__INDEX__/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	var aa={$addrList};
+//	console.log(aa);
+    /* 省市区三级联动 */
+    function privance() //省
+    {
+        $.post("{:url('privance')}", {param1: 'value1'}, function(data, textStatus, xhr) {
+            var html;
+            for (var i = 0; i<data.length; i++) {
+                html += "<option value='"+data[i]['id']+"'>"+data[i]['cityname']+"</option>";
+            }
+            $('.province').html(html);
+        });
+    }
+    privance();
+
+    function city() //市
+    {
+        var provinceid = $('.province').val(); //省id
+        $.post("{:url('city')}", {provinceid: provinceid}, function(data, textStatus, xhr) {
+            var html;
+            for (var i = 0; i<data.length; i++) {
+                html += "<option value='"+data[i]['id']+"'>"+data[i]['cityname']+"</option>";
+            }
+            $('.city').html(html);
+            area();
+        });
+    }
+    city();
+
+    function area() //县
+    {
+        var cityid = $('.city').val(); //市id
+// alert(cityid);
+        $.post("{:url('area')}", {cityid: cityid}, function(data, textStatus, xhr) {
+            var html;
+            for (var i = 0; i<data.length; i++) {
+                html += "<option value='"+data[i]['id']+"'>"+data[i]['cityname']+"</option>";
+            }
+            $('.area').html(html);
+        });
+    }
+    area();
+
+    $('.province').change(function(event) { //选择省
+        city();
+    });
+
+    $('.city').change(function(event) { //选择市
+        area();
+    });
+    /* 省市区三级联动 end */
+
+</script>
+
+</body>
+</html>

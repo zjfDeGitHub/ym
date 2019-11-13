@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0;
+			background-color: #f6f6f6;
+		}
+		.box_body>form{
+			background-color: #ffff;
+		}
+		.box_body>form>input{
+			width: 100%;
+			height: 0.7rem;
+			line-height: 0.7rem;
+			border: none;
+			border-bottom: 0.01rem solid #999;
+			font-size: 0.3rem;
+			margin-top: 0.1rem;
+		}
+		.box{
+			border-bottom: 0.01rem solid #999;
+			margin-top: 0.3rem;
+		}
+		select {
+			/*将默认的select选择框样式清除*/
+			appearance: none;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			font-size: 0.3rem;
+		}
+		.box>select{
+			width: 31%;
+			height: 0.8rem;
+			border: 0;
+			background-color: #fff;
+			margin-left: 0.1rem;
+		}
+		textarea{
+			width: 100%;
+			height: 1.8rem;
+			border: none;
+			border-bottom: 0.01rem solid #f6f6f6;
+			padding-top: 0.2rem;
+			text-indent: 0.2rem;
+			font-size: 0.3rem;
+		}
+		.ok{
+			position: absolute;
+			width: 95% !important;
+			height: 0.8rem!important;
+			line-height: 0.8rem!important;
+			border-bottom: none;
+			background-color: #333;
+			color: #fff;
+			margin-top: 0.8rem!important;
+		}
+	</style>
+</head>
+<body>
+<div class="box_body">
+	<form method="post" action="{:url('Order/createAddr')}">
+		<input type="text" name="username" placeholder="姓名"/>
+		<input type="text" name="phone"  placeholder="电话"/>
+		<div class="box">
+			<select name="province" class="province" ><option value=""></option></select>
+			<select name="city" class="city"><option value=""></option></select>
+			<select name="area" class="area"><option value=""></option></select>
+		</div>
+		<textarea name="address" placeholder="详细地址"></textarea>
+		<input type="submit" value="保存" class="ok"/>
+	</form>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="__INDEX__/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    (function(designWidth, maxWidth) {
+        var doc = document,
+            win = window,
+            docEl = doc.documentElement,
+            remStyle = document.createElement("style"),
+            tid;
+
+        function refreshRem() {
+            var width = docEl.getBoundingClientRect().width;
+            maxWidth = maxWidth || 540;
+            width>maxWidth && (width=maxWidth);
+            var rem = width * 100 / designWidth;
+            remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+        }
+
+        if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(remStyle);
+        } else {
+            var wrap = doc.createElement("div");
+            wrap.appendChild(remStyle);
+            doc.write(wrap.innerHTML);
+            wrap = null;
+        }
+        //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+        refreshRem();
+
+        win.addEventListener("resize", function() {
+            clearTimeout(tid); //防止执行两次
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+
+        win.addEventListener("pageshow", function(e) {
+            if (e.persisted) { // 浏览器后退的时候重新计算
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }
+        }, false);
+
+        if (doc.readyState === "complete") {
+            doc.body.style.fontSize = "16px";
+        } else {
+            doc.addEventListener("DOMContentLoaded", function(e) {
+                doc.body.style.fontSize = "16px";
+            }, false);
+        }
+    })(750, 750);
+    /* 省市区三级联动 */
+    function privance() //省
+    {
+        $.post("{:url('privance')}", {param1: 'value1'}, function(data, textStatus, xhr) {
+            var html;
+            for (var i = 0; i<data.length; i++) {
+                html += "<option value='"+data[i]['cityname']+","+data[i]['id']+"'>"+data[i]['cityname']+"</option>";
+            }
+            $('.province').html(html);
+        });
+    }
+
+        privance();
+
+
+
+    function city() //市
+    {
+        var provinceid = $('.province').val(); //省id
+        provinceid = provinceid.split(',')[1];
+        $.post("{:url('city')}", {provinceid: provinceid}, function(data, textStatus, xhr) {
+            var html;
+            for (var i = 0; i<data.length; i++) {
+                html += "<option value='"+data[i]['cityname']+","+data[i]['id']+"'>"+data[i]['cityname']+"</option>";
+            }
+            $('.city').html(html);
+            area();
+        });
+    }
+    city();
+
+    function area() //县
+    {
+        var cityid = $('.city').val(); //市id
+        cityid = cityid.split(',')[1];
+// alert(cityid);
+        $.post("{:url('area')}", {cityid: cityid}, function(data, textStatus, xhr) {
+            var html;
+            for (var i = 0; i<data.length; i++) {
+                html += "<option value='"+data[i]['cityname']+"'>"+data[i]['cityname']+"</option>";
+            }
+            $('.area').html(html);
+        });
+    }
+    area();
+
+    $('.province').change(function(event) { //选择省
+        city();
+    });
+
+    $('.city').change(function(event) { //选择市
+        area();
+    });
+    /* 省市区三级联动 end */
+
+</script>
+
+</body>
+</html>

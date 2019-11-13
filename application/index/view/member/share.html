@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>邀请好友</title>
+		<style>
+			body{
+				margin: 0px;
+				background: url(__INDEX__/img/img_bg.png) no-repeat;
+				background-size:100%;
+			}
+			.aui-title{
+				width: 100%;
+				height:1.375rem;
+				display: flex;
+				align-items: center;
+				position: fixed;
+				top:0 ;
+			}
+			.aui-title>a{
+				width: 0.4rem;
+				margin-left: 0.2rem;
+			}
+			.aui-title>a>img{
+				height:100%;
+				width:100%;
+			}
+			.aui-title>p{
+				margin-left: 2.7rem;
+				font-size: 0.35rem;
+				color: #fff;
+				font-weight: bold;
+			}
+			header>p{
+				font-size: 0.6rem;
+				color: #fff;
+				margin: 0;
+				text-align: center;
+				margin-top: 1.4rem;
+				font-weight: bold;
+			}
+			.number{
+				position: absolute;
+			    margin-left: 55%;
+			    font-size: 0.45rem;
+			    color: #393F4D;
+			    margin-top: 88%;
+			    font-weight: bold;
+			}
+			.code{
+				position: absolute;
+				width: 2.7rem;
+			    margin-top: 66%;
+			    margin-left: 5%;
+			}
+			.code>img{
+				width: 100%;
+				height: 100%;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<header>
+				<div class="aui-title">
+					<a href="{:url('/index/member/index')}">
+					<img src="__INDEX__/img/back02.png" />
+					</a>
+				</div>
+				<div style="clear: both;"></div>
+			</header>
+			<p class="number">{$userCode}</p>
+				<div class="code">
+					<!--<img src="__INDEX__/img/yqbackground.png"/>-->
+					<img src="{$ewm['data']}"/>
+				</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	(function(designWidth, maxWidth) {
+	var doc = document,
+	win = window,
+	docEl = doc.documentElement,
+	remStyle = document.createElement("style"),
+	tid;
+
+	function refreshRem() {
+		var width = docEl.getBoundingClientRect().width;
+		maxWidth = maxWidth || 540;
+		width>maxWidth && (width=maxWidth);
+		var rem = width * 100 / designWidth;
+		remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+	}
+
+	if (docEl.firstElementChild) {
+		docEl.firstElementChild.appendChild(remStyle);
+	} else {
+		var wrap = doc.createElement("div");
+		wrap.appendChild(remStyle);
+		doc.write(wrap.innerHTML);
+		wrap = null;
+	}
+	//要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+	refreshRem();
+
+	win.addEventListener("resize", function() {
+		clearTimeout(tid); //防止执行两次
+		tid = setTimeout(refreshRem, 300);
+	}, false);
+
+	win.addEventListener("pageshow", function(e) {
+		if (e.persisted) { // 浏览器后退的时候重新计算
+			clearTimeout(tid);
+			tid = setTimeout(refreshRem, 300);
+		}
+	}, false);
+
+	if (doc.readyState === "complete") {
+		doc.body.style.fontSize = "16px";
+	} else {
+		doc.addEventListener("DOMContentLoaded", function(e) {
+			doc.body.style.fontSize = "16px";
+		}, false);
+	}
+})(750, 750);
+	</script>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="UTF-8">
+		<script src="__INDEX__/js/md-avatar.js"></script>
+		<title></title>
+	</head>
+	<style type="text/css">
+		body {
+			background: #f8f8f8;
+			width: 100%;
+			height: 100%;
+			z-index: -10;
+			background-size: cover;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+			font-size: 0.9rem;
+		}
+		
+		ul,
+		li {
+			list-style: none;
+		}
+		
+		header {
+			position: fixed;
+			background: #fff;
+			height: 4rem;
+			z-index: 1;
+			width: 100%;
+			top: 0;
+		}
+		
+		.top1 {
+			height: 3rem;
+			background: #f786864d;
+			position: relative;
+			top: 4rem;
+			color: red;
+			font-weight: bold;
+			text-align: center;
+			line-height: 3rem;
+		}
+		.box_2 {
+			height: auto;
+			margin: 5.5rem 0.5rem 0 0.5rem;
+		}
+		
+		.box {
+			white-space: nowrap;
+			height: auto;
+			margin: 1rem 0;
+			background: #fff;
+			border-radius: 0.2rem;
+			border-bottom: 1rem #fff solid;
+		}
+		
+		.title {
+			height: 3rem;
+			text-align: center;
+			line-height: 3rem;
+		}
+		.title span{
+			color: red;
+			font-size: 1.5rem;
+		}
+		.border{
+			position: absolute;
+    padding: 5px;
+    border-style: solid;
+    border-color: #f786864d;
+		}
+		.lmbox {
+			background-color:#F8F8F8;
+			height: 10rem;
+			margin: 0 0.5rem;
+			border-radius: 0.2rem;
+			text-align: center;
+		}
+		.lmbox img{
+			width: 3rem;
+			height: 3rem;
+			float: left;
+			    padding: 0.25rem;
+			    display: inline-block;
+		}
+		.shopbox {
+			height: 8rem;
+			width: 100%;
+		}
+		
+		.box::-webkit-scrollbar {
+			width: 0;
+			height: 0;
+			display: none;
+		}
+		
+		#pp {
+			width: 7rem;
+			list-style: none;
+			display: inline-block;
+			height: 6rem;
+			text-align: center;
+			margin: 0.5rem;
+			padding: 0.2rem;
+			border-radius: 0.5rem;
+			border: 0.04rem #C4C4C4 solid;
+			float: left;
+		}
+		
+		.fj {
+			width: 2.5rem;
+			float: left;
+			margin: 1rem;
+		}
+		
+		#pp img {
+			width: 100%;
+			height: 100%;
+		}
+		
+		.jiage {
+			width: 30%;
+			list-style: none;
+			display: inline-block;
+			height: 6rem;
+			margin: 0.5rem;
+			padding: 0.2rem;
+			float: left;
+			line-height: 2rem;
+		}
+		
+		.jiage h4 {
+			font-size: 1rem;
+		}
+		
+		.box2 {
+			white-space: nowrap;
+			background: #fff;
+			height: auto;
+			margin: 1rem 0.5rem;
+		}
+		
+		.neirong li {
+			height: 25%;
+		}
+		
+		.bbox {
+			background: #ff0000a6;
+    height: 4rem;
+    width: 100%;
+    color: #fff;
+    line-height: 4rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0rem;
+		}
+		
+		.bbox li {
+			color: #c4c4c4;
+			font-size: 0.8rem;
+			width: 25%;
+			float: left;
+			text-align: center;
+			margin: 0.5rem 0rem;
+		}
+		
+		.shopend {
+			text-align: center;
+			height: 3rem;
+			border-bottom: 0.01rem #f8f8f8 solid;
+			line-height: 3rem;
+			font-size: 0.8rem;
+		}
+		
+		.shopend input {
+			float: right;
+			width: 30%;
+			height: 3rem;
+			color: #fff;
+			background: #0b4c50d9;
+			border: none;
+		}
+		
+		.shopend span {
+			color: red;
+		}
+		
+		.nr_font1 {
+			float: left;
+		}
+		
+		.nr_font2 {
+			float: right;
+			
+		}
+
+		
+		.back {
+			width: 2rem;
+			position: absolute;
+			top: 1rem;
+			left: 1rem;
+			z-index: 1;
+		}
+		
+		.shr {
+			width: 76.5%;
+			float: left;
+			margin-top: 1rem;
+			color: #8a8787;
+		}
+		
+		.name {
+			float: left;
+		}
+		
+		.phone {
+			float: right;
+		}
+		
+		.time {
+			height: 2rem;
+			line-height: 2rem;
+			margin-left: 0.5rem;
+		}
+		.pt1{
+			    height: 3rem;
+    padding: 0.5rem;
+    line-height: 3rem;
+    border-bottom: 2px #f8f8f8 solid;
+		}
+		.pt1 img{
+			width: 2.5rem;
+			height: 2.5rem;
+			float: left;
+			    padding: 0.25rem;
+		}
+		.imgbox {
+				white-space: nowrap;
+				overflow-x: auto;
+			}
+			/*注释1*/
+			
+			.imgbox::-webkit-scrollbar {
+				width: 0;
+				height: 0;
+				display: none;
+			}
+			.imgbox div {
+    width: 3.5rem;
+    list-style: none;
+    display: inline-block;
+    height: 3.5rem;
+    text-align: center;
+    margin: 0.5rem;
+    border-radius: 0.2rem;
+    border: 0.04rem #C4C4C4 solid;
+    position: relative;
+}
+.imgbox span{
+	position: absolute;
+    bottom: 0rem;
+    left: 0.7rem;
+    background: #f36b6bcc;
+    color: #fff;
+    width: 2rem;
+    border-radius: 0.4rem;
+    font-size: 0.55rem;
+    padding: 0.1rem;
+}
+	</style>
+
+	<body>
+		<header>
+			<img class="back" id="back" src="__INDEX__/img/back.png" />
+			<div class="aui-title" style="text-align: center; height: 4rem;line-height:4.5rem;font-size:1.2rem;position: relative;">
+				拼团详情 </div>
+		</header>
+		<div class="top1">
+			<div>火热拼团中</div>
+		</div>
+			<div class="box_2">
+				<div class="box">
+					<div class="shopbox">						
+						<div id="pp">
+							<img src="__uploads__/{$ptOrderData['og_thumb']}" />
+						</div>
+						<div class="jiage">
+							<h4>{$ptOrderData['goods_name']}</h4>
+							<span class="guige">
+						{$ptOrderData['pt_num']}人团
+					</span><br/>
+							<span>
+						￥{$ptOrderData['pt_price']}
+					</span>
+						</div>
+					</div>
+					<div class="lmbox" >
+						<h5 class="title">已有{$userLen}人参与，还差<span>{$ptOrderData['pt_num']-$userLen}</span>人拼团成功</h5>
+						<div class="imgbox" id="demo">
+
+							<!--{volist name='ptUser' id='ptUser3'}-->
+							<!--<div><?php if($ptUser3['user_id'] == $ptOrderData['tz_id']){ echo "<span>团长</span>";} ?><img src="/img/headimg.png"/></div>-->
+							<!--{/volist}-->
+							<!--<div><img src="img/headimg.png"/></div>-->
+							<!--<div><img src="img/headimg.png"/></div>-->
+							<!--<div><img src="img/headimg.png"/></div>-->
+						
+						</div>
+					</div></div>
+				</div>
+				<div class="box2">
+					{volist name='ptUser' id='ptUser2'}
+						<div class="pt1">
+							<img src="img/headimg.png"/>
+							<div class="nr_font1">
+								{$ptUser2['name']}
+							</div>
+							<div class="nr_font2">
+								{$ptUser2['order_time']|date='Y-m-d H:i:s',###}
+							</div>
+						</div>
+					{/volist}
+						<!--<div class="pt1">-->
+							<!--<img src="img/headimg.png"/>-->
+							<!--<div class="nr_font1">-->
+								<!--某某-->
+							<!--</div>-->
+							<!--<div class="nr_font2">-->
+								<!--2019-11-05&nbsp;16:08:17-->
+							<!--</div>-->
+						<!--</div>-->
+				</div>
+
+		<div class="bbox">
+			<div class="jsbox">
+				<div class="jiesuan">立即加入拼团</div>
+				<form method="get" action="{:url('order/createOrder')}" id="formid">
+			<input hidden="hidden"  name="goodsCartId" value=""/>
+		</form>
+			</div>
+		</div>
+	</body>
+<script>
+			var u = navigator.userAgent;
+			var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			var isUc = u.indexOf('UCBrowser') > -1; //uc浏览器
+			//var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			if(isAndroid && isUc) { /*注释5*/
+				$('.imgbox').on('touchstart', function() {
+					$(document).on('touchmove', function(e) {
+						e.preventDefault();
+					});
+					$(document).on('touchend', function() {
+						$(document).unbind();
+					});
+				});
+			}
+		</script>
+
+	<script>
+        var demo = document.getElementById('demo');
+        <?php
+			$content = array();
+			foreach($ptUser as $k =>$v){
+			    $content[]=$v['name'];
+		}
+		?>
+
+        var content = <?php echo json_encode($content) ?>;
+		// content.replace(/(^\s*)|(\s*$)/g, "");
+		console.log(content);
+        content.forEach(function(t) {
+            var avatar = new mdAvatar({
+                size: 36,
+                text: t
+            });
+
+            demo.appendChild(avatar);
+        });
+	</script>
+</html>

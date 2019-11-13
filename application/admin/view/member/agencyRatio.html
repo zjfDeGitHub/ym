@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+	<style>
+		.but{
+			background: none;
+    		border: 0;
+		}
+	</style>
+</head>
+<body>
+<!-- 头部 -->
+{include file="common/top"}
+
+<!-- /头部 -->
+
+<div class="main-container container-fluid">
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        {include file="common/left"}
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">系统</a>
+                    </li>
+                    <li class="active">会员管理</li>
+                </ul>
+            </div>
+            <!-- /Page Breadcrumb -->
+
+            <!-- Page Body -->
+            <div class="page-body">
+
+                <!--<button type="button" tooltip="添加会员" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '/admin/user/add.html'"> <i class="fa fa-plus"></i> Add-->
+                <!--</button>-->
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="flip-scroll">
+                                    <table class="table table-bordered table-hover">
+                                        <center><h4>代理比例</h4></center>
+                                        <!--<hr style="width:1000PX;height:10px">-->
+                                        <br>
+
+                                        <thead class="">
+                                        <tr>
+                                            <th class="text-center">代理等级</th>
+                                            <th class="text-center">代理名称</th>
+                                            <th class="text-center">比例</th>
+                                            <th class="text-center">主区业绩</th>
+                                            <th class="text-center">所有业绩</th>
+                                            <th class="text-center">操作</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {volist name="data" id="vo"}
+                                        <tr><form action="{:url('agencyRatio')}" method="post" >
+                                            <td align="center">{$vo['level']}</td>
+                                            <td align="center">{$vo['levelName']}</td>
+                                            <input type="hidden" value="{$vo['level']}" name="level">
+                                            <td align="center"><input value="{$vo['ratio']}" name="ratio"></td>
+                                            <td align="center"><input value="{$vo['indexNum']}" name="indexNum"></td>
+                                            <td align="center"><input value="{$vo['sumNum']}" name="sumNum"></td>
+                                            <td align="center">
+                                               <button type="submit" class="but"> 
+	                                               	<a type="submit"  class="btn btn-primary btn-sm shiny">
+	                                                    <i class="fa fa-edit">修改</i>
+	                                                </a>
+                                               </button>
+
+                                            </td></form>
+                                        </tr>
+                                        {/volist}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--<div class="flip-scroll">-->
+                                    <!--<table class="table table-bordered table-hover">-->
+                                        <!--<br>-->
+                                        <!--<center><h4>幸运增值比例</h4></center>-->
+                                        <!--<br>-->
+                                        <!--<thead class="">-->
+                                        <!--<tr>-->
+                                            <!--<th class="text-center">ID</th>-->
+                                            <!--<th class="text-center">名字</th>-->
+                                            <!--<th class="text-center">比例</th>-->
+                                            <!--<th class="text-center">操作</th>-->
+
+                                        <!--</tr>-->
+                                        <!--</thead>-->
+                                        <!--<tbody>-->
+                                        <!--{volist name="luckData" id="vo"}-->
+                                        <!--<tr><form action="{:url('tjRatio')}" method="post" >-->
+                                            <!--<td align="center">{$vo['id']}</td>-->
+                                            <!--<input value="{$vo['id']}" name="id" hidden="hidden">-->
+                                            <!--<td align="center">{$vo['name']}</td>-->
+                                            <!--<td align="center"><input value="{$vo['ratio']}" name="ratio"></td>-->
+                                            <!--<td align="center">-->
+                                                <!--<button type="submit" class="but">-->
+                                                    <!--<a type="submit"  class="btn btn-primary btn-sm shiny">-->
+                                                        <!--<i class="fa fa-edit">修改</i>-->
+                                                    <!--</a>-->
+                                                <!--</button>-->
+
+                                            <!--</td></form>-->
+                                        <!--</tr>-->
+                                        <!--{/volist}-->
+
+                                        <!--</tbody>-->
+                                    <!--</table>-->
+                                <!--</div>-->
+
+
+                                <!--<div class="flip-scroll">-->
+
+                                    <!--<table class="table table-bordered table-hover">-->
+                                        <!--<br>-->
+                                        <!--<center><h4>推荐比例</h4></center>-->
+                                        <!--<br>-->
+                                        <!--<thead class="">-->
+                                        <!--<tr>-->
+                                            <!--<th class="text-center">ID</th>-->
+                                            <!--<th class="text-center">名字</th>-->
+                                            <!--<th class="text-center">比例</th>-->
+                                            <!--<th class="text-center">操作</th>-->
+
+                                        <!--</tr>-->
+                                        <!--</thead>-->
+                                        <!--<tbody>-->
+                                        <!--{volist name="tjData" id="vo"}-->
+                                        <!--<tr><form action="{:url('tjRatio')}" method="post" >-->
+                                            <!--<td align="center" name="id">{$vo['id']}</td>-->
+                                            <!--<td align="center">{$vo['name']}</td>-->
+                                            <!--<input value="{$vo['id']}" name="id" hidden="hidden">-->
+                                            <!--<td align="center"><input value="{$vo['ratio']}" name="ratio"></td>-->
+                                            <!--<td align="center">-->
+                                                <!--<button type="submit" class="but">-->
+                                                    <!--<a type="submit"  class="btn btn-primary btn-sm shiny">-->
+                                                        <!--<i class="fa fa-edit">修改</i>-->
+                                                    <!--</a>-->
+                                                <!--</button>-->
+
+                                            <!--</td></form>-->
+                                        <!--</tr>-->
+                                        <!--{/volist}-->
+
+                                        <!--</tbody>-->
+                                    <!--</table>-->
+
+                                <!--</div>-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /Page Body -->
+        </div>
+        <!-- /Page Content -->
+    </div>
+</div>
+
+<!--Basic Scripts-->
+<script src="style/jquery_002.js"></script>
+<script src="style/bootstrap.js"></script>
+<script src="style/jquery.js"></script>
+<!--Beyond Scripts-->
+<script src="style/beyond.js"></script>
+
+
+
+</body></html>

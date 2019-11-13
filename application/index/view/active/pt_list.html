@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<script type="text/javascript" src="__INDEX__/js/jquery-3.2.1.js"></script>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			 body {
+            background: #f8f8f8;
+            z-index: -10;
+
+        }
+		body{
+			background-color: #F6F6F6;
+			/*background-color: red;*/
+		}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        header {
+            position: fixed;
+            background: #fff;
+            height: 4rem;
+            z-index: 1;
+            width: 100%;
+            top: 0;
+        }
+        #btn {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    width: 4.5rem;
+    color: #fff;
+    background: #EB5F3E;
+    border: none;
+    border-radius: 1rem;
+    height: 1.5rem;
+    -webkit-appearance: none;
+}
+			.li_2 {
+            width: 44%;
+            height: 13rem;
+            float: left;
+            margin: 0.5rem;
+            border: 0.05rem #C4C4C4 solid;
+            border-radius: 0.3rem;
+            line-height: 1.5rem;
+            position: relative;
+        }
+        .li_2 h5{
+        	    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        }
+        .li_2 span{
+        	    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        }
+        .li_2 img {
+            width: 100%;
+            height: 60%;
+        }
+		.back{
+			width: 2rem;
+			position: absolute;
+			top: 1.3rem;
+			left: 0.5rem;
+			z-index: 1;
+		}
+		.title{
+			background-color: #B0191D;
+			display: flex;
+			height: 3rem;
+		}
+		.title>div{
+			flex: 1;
+			text-align: center;
+			line-height: 3rem;
+			color: #fff;
+		}
+		div.on{
+			background-color: #CA3134;
+			/*border-bottom-right-radius: 2rem;
+			border-top-right-radius: 2rem;*/
+		}
+		.pt_list>ul>li{
+			height: 8rem;
+			background-color: #fff;
+			display: flex;
+			margin-bottom: 0.5rem;
+		}
+		.pt_list>ul>li>img{
+			width:8rem;
+			height: 8rem;
+		}
+		.pt_list>ul>li>div>p{
+			font-size: 1rem;
+			margin-top: 0.3rem;
+		}
+		.num{
+			width: 2.7rem;
+		    height: 1.2rem;
+		    font-size: 0.7rem;
+		    line-height: 1.2rem;
+		    text-align: center;
+		    border-radius: 0.2rem;
+		    border: 0.05rem solid #B0191D;
+		    color: #B0191D;
+		    margin-top: 0.2rem;
+		}
+		.pt_num{
+			display: flex;
+			align-items: center;
+			margin-top: 0.4rem;
+		}
+		.pt_num>div{
+			display: flex;
+		}
+		.pt_num>p{
+			font-size: 0.5rem;
+    		color: #999;
+    		margin-left: 0.2rem;
+		}
+		.pt_num>div>div{
+			width: 1rem;
+		    height: 1rem;
+		    border-radius: 50%;
+		    overflow: hidden;
+		    margin-left: 0.2rem;
+		}
+		.pt_num>div>div>img{
+			width: 100%;
+			height: 100%;
+		}
+		.price{
+			display: flex;
+			align-items: center;
+			margin-top: 0.5rem;
+		}
+		.price>.right{
+			background-color: #A3252B;
+		    width: 5rem;
+		    height: 2rem;
+		    border-radius: 0.5rem;
+		    color: #fff;
+		    line-height: 2rem;
+		    text-align: center;
+		    margin-left: 3rem;
+		    text-decoration: none;
+		}
+		.left>p{
+			color: #A4262A;
+			font-size: 1.3rem;
+			line-height: 1;
+		}
+		.left>s{
+			color: #999;
+			font-size: 0.8rem;
+		}
+		.top{
+			height: 1.5rem;
+		}
+		.top>p{
+			font-size: 0.8rem;
+			color: #999;
+			float: left;
+			line-height: 1.5rem;
+			margin-left: 0.2rem;
+		}
+		.top>div{
+			float: right;
+			display: flex;
+			align-items: center;
+		}
+		.top>div>p{
+			color: #FF801A;
+			font-size: 0.8rem;
+			margin-right: 0.3rem;
+		}
+		.top>div>a>img{
+			width: 0.5rem;
+    		height: 0.8rem;
+    		margin-right: 0.3rem;
+		}
+		.my_list>ul>li{
+			height: 10rem;
+			margin-bottom: 0.5rem;
+			/*background-color: red;*/
+		}
+		.content{
+			height: 6.5rem;
+			border-top: 0.05rem solid #E6E6E6;
+			border-bottom: 0.05rem solid #E6E6E6;			
+		}
+		.content>img{
+			height: 5.5rem;
+    		width: 5.5rem;
+			float: left;
+			margin: 0.5rem
+		}
+		.content>p{
+			float: left;
+			margin-top: 0.5rem;
+			font-size: 0.9rem;
+		}
+		.content>div{
+			float: right;
+			margin-top: 0.5rem;
+			margin-right: 0.3rem;
+			font-size: 0.9rem;
+		}
+		.content>div>p:nth-of-type(2){
+			color: #999;
+			float: right;
+		}
+		.price22{
+			float: right;
+			margin-right: 0.3rem;
+		}
+		.price22>p{
+			font-size: 0.9rem;
+			line-height: 2rem;
+
+		}
+		.price22>p>span:nth-of-type(2){
+			color: red;
+		}
+		</style>
+	</head>
+	<body>
+	<header>
+		<a href="http://cc.jwhcx.com/index.php/index/shop/index.html">
+				<img class="back" id="back" src="__INDEX__/img/back.png"/>
+		</a>
+		<div class="aui-title" style=" margin: 0 0.6rem;text-align: center; height: 4rem;line-height:4.5rem;font-size:1.2rem;position: relative;">新人福利</div>
+		<div class="title">
+	    	<div class="on">超值拼团</div>
+	    	<div>我的拼团</div>
+    	</div>
+    	<div class="list">
+    		<div class="pt_list" style="display: none;">
+    			<ul>
+	    			<li>
+	    				<img src="__INDEX__/img/back.png" />
+	    				<div>
+	    					<p>潘婷发膜270ml</p>
+	    					<div class="num">
+	    						2人团
+	    					</div>
+	    					<div class="pt_num">
+	    						<div>
+	    							<div>
+	    								<img src="__INDEX__/img/lunbo1.png" />
+	    							</div>
+	    							<div>
+	    								<img src="__INDEX__/img/lunbo1.png" />
+	    							</div>
+	    						</div>
+	    						<p>已拼</p>
+	    					</div>
+	    					<div class="price">
+	    						<div class="left">
+	    							<p>￥188.00</p>
+	    							<s>单卖价￥249.00</s>
+	    						</div>
+	    						<a href="javascript:;" class="right">
+	    							去开团
+	    						</a>
+	    					</div>
+	    				</div>
+	    			</li>
+	    			<li>
+	    				<img src="__INDEX__/img/back.png" />
+	    				<div>
+	    					<p>潘婷发膜270ml</p>
+	    					<div class="num">
+	    						2人团
+	    					</div>
+	    					<div class="pt_num">
+	    						<div>
+	    							<div>
+	    								<img src="__INDEX__/img/lunbo1.png" />
+	    							</div>
+	    							<div>
+	    								<img src="__INDEX__/img/lunbo1.png" />
+	    							</div>
+	    						</div>
+	    						<p>已拼</p>
+	    					</div>
+	    					<div class="price">
+	    						<div class="left">
+	    							<p>￥188.00</p>
+	    							<s>单卖价￥249.00</s>
+	    						</div>
+	    						<a href="javascript:;" class="right">
+	    							去开团
+	    						</a>
+	    					</div>
+	    				</div>
+	    			</li>
+    			</ul>
+    		</div>
+    		<div class="my_list">
+    			<ul>
+    				<li>
+    					<div class="top">
+    						<p>PT1222222345646</p>
+    						<div>
+    							<p>团购中</p>
+    							<a href="javascript:;">
+    								<img src="__INDEX__/img/img_right.png" />
+    							</a>
+    						</div>
+    					</div>
+    					<div style="clear: both;"></div>
+    					<div class="content">
+    						<img src="__INDEX__/img/lunbo1.png" />
+    						<p>拼团兔子</p>
+    						<div>
+    							<p>￥50.00/1件</p>
+    							<p>x1</p>
+    						</div>
+    					</div>
+    					<div class="price22">
+    						<p>共<span>1</span>件商品&nbsp;实付：<span>￥50</span></p>
+    					</div>
+    					<div style="clear: both;"></div>
+    				</li>
+    				<li>
+    					<div class="top">
+    						<p>PT1222222345646</p>
+    						<div>
+    							<p>团购中</p>
+    							<a href="javascript:;">
+    								<img src="__INDEX__/img/img_right.png" />
+    							</a>
+    						</div>
+    					</div>
+    					<div class="content">
+    						<img src="__INDEX__/img/lunbo1.png" />
+    						<p>拼团兔子</p>
+    						<div>
+    							<p>￥50.00/1件</p>
+    							<p>x1</p>
+    						</div>
+    					</div>
+    					<div class="price22">
+    						<p>共<span>1</span>件商品&nbsp;实付：<span>￥50</span></p>
+    					</div>
+    				</li>
+    			</ul>
+    		</div>
+    	</div>
+</header>
+		
+		 
+	</body>
+<script>
+    function pp(id) {
+        window.location.href = "http://cc.jwhcx.com/index.php/index/goods?id="+id+""
+    }
+    $(function(){
+    	$(".title>div").click(function(){
+    		var ind=$(".title>div").length();
+    		for(var i=0;i<=ind;i++){
+    		
+    		}
+    		$(this).addClass("on").siblings().removeClass("on");	
+    	})
+
+    	
+    })
+</script>
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				background: #f8f8f8;
+				width: 100%;
+				height: 100%;
+				z-index: -10;
+				background-size: cover;
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			header {
+				position: fixed;
+				background: #fff;
+				height: 4rem;
+				z-index: 1;
+				width: 100%;
+				top: 0;
+			}
+			.fj{
+			    text-align: center;
+			    width: 4rem;
+			    position: absolute;
+			    top: 0.7rem;
+			}
+			.fj span{
+				font-size: 0.55rem;
+			}
+			.fj img{
+				width: 1.7rem;
+				display: block;
+				margin: 0 auto;
+			}
+			#search_box1 {
+				width: 80%;
+				padding-left: 45px;
+				box-sizing: border-box;
+				line-height: 30px;
+				height: 2.5rem;
+				background: #f8f8f8;
+				background-size: 1.5rem 1.5rem;
+				border: none;
+				position: absolute;
+				right: 0.5rem;
+				top: 0.7rem;
+			}
+			
+			.sousuo {
+				position: absolute;
+				width: 1.7rem;
+				top: 1rem;
+				left: 4.6rem;
+				z-index: 1;
+			}
+			/*.tishi {
+				display: none;
+			}
+			*/
+			
+			.banner {
+				/*margin-top: -8rem;*/
+				position: relative;
+				height: 11.5rem;
+				overflow: hidden;
+				margin:-11rem 0.5rem 0 0.5rem;
+				
+			}
+			
+			ol {
+				list-style: none;
+				display: none;
+			}
+			/* WebKit browsers */
+			
+			input::-webkit-input-placeholder {
+				color: #C4C4C4;
+				font-size: 12px;
+			}
+			/* Mozilla Firefox 4 to 18 */
+			
+			input:-moz-placeholder {
+				color: #C4C4C4;
+				opacity: 1;
+				font-size: 12px;
+			}
+			/* Mozilla Firefox 19+ */
+			
+			input::-moz-placeholder {
+				color: #C4C4C4;
+				opacity: 1;
+				font-size: 12px;
+			}
+			/* Internet Explorer 10+ */
+			
+			input:-ms-input-placeholder {
+				color: #C4C4C4;
+				font-size: 12px;
+			}
+			
+			.banner:after {
+				content: '';
+				display: block;
+				height: 0;
+				visibility: hidden;
+				line-height: 0;
+				clear: both;
+			}
+			
+			.swiper-slide {
+				-webkit-flex-shrink: 0;
+				-ms-flex-negative: 0;
+				flex-shrink: 0;
+				position: relative;
+				-webkit-transition-property: -webkit-transform;
+				transition-property: -webkit-transform;
+				-o-transition-property: transform;
+				transition-property: transform;
+				transition-property: transform, -webkit-transform;
+			}
+			
+			.banner .slider_list .swiper-slide {
+				float: left;
+				flex-shrink: 0;
+				-webkit-flex-shrink: 0;
+				-ms-flex-negative: 0;
+				flex-shrink: 0;
+				-webkit-transition-property: -webkit-transform;
+				transition-property: -webkit-transform;
+				-o-transition-property: transform;
+				transition-property: transform;
+				transition-property: transform, -webkit-transform;
+			}
+			
+			.banner .slider_list a {
+				display: block;
+			}
+			
+			.banner .slider_list img {
+				display: block;
+				width: 100%;
+				height: 10.2rem;
+				border-radius:0.5rem;
+			}
+			
+			.banner .pagination {
+				position: relative;
+				left: 0;
+				right: 0;
+				text-align: center;
+			}
+			
+			.banner .pagination li {
+				display: inline-block;
+				border: none;
+				width: 10px;
+				height: 10px;
+				margin: 0 3px;
+				border-radius: 5px;
+				background: #E3E8FF;
+				/*#e9e9e9;*/
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4);
+				-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4);
+				-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4);
+			}
+			
+			.banner .pagination li.active {
+				background: #4269F2;
+				border: none;
+			}
+			
+			.tbox img {
+				width: 100%;
+				height: 100%;
+				border-radius: 0.5rem;
+			}
+			
+			.onebox {
+				position: relative;
+				height: 8rem;
+				border-radius: 0.5rem;
+				margin: 0rem 0.5rem;
+				background: #fff;
+				line-height: 1.5rem;
+			}
+			
+			.onebox img {
+				height: 4rem;
+			}
+			
+			.onebox ul {
+				margin: 0 0.55rem;
+				list-style: none;
+				width: 100%;
+				height: 8rem;
+			}
+			
+			.onebox li {
+				margin-top: 0.5rem;
+				width: 32%;
+				height: 7rem;
+				float: left;
+				text-align: center;
+				color: #202020;
+				font-size: 12px;
+			}
+			
+			.onebox p {
+				font-weight: 600;
+			}
+			
+			.onebox span {
+				color: #a92139;
+				font-size: 0.8rem;
+			}
+			
+			.imgbox {
+				background: #fff;
+				margin: 0.5rem;
+				border-radius: 0.5rem;
+			}
+			
+			.imgbox img {
+				width: 100%;
+			}
+			
+			.twobox {
+				background: #FFFFFF;
+				height: 40rem;
+				position: relative;
+				border-radius: 0.5rem;
+				/*overflow-x: hidden;*/
+				margin: 0 0.5rem;
+			}
+			
+			.ul_1 {
+				margin: 0.5rem 0.55rem;
+				height: 22rem;
+			}
+			
+			.li_3 {
+				width: 95%;
+				height: 6rem;
+				float: left;
+				margin: 0.5rem;
+				border: 0.05rem #f8f8f8 solid;
+				border-radius: 0.3rem;
+				line-height: 1.15rem;
+				position: relative;
+				text-align: center;
+			}
+			
+			.li_3 h4 {
+				position: absolute;
+				top: 0.2rem;
+				left: 1.7rem;
+			}
+			
+			.box img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.li_1 {
+				width: 45%;
+				height: 13rem;
+				float: left;
+				margin: 0.4rem;
+				border: 0.05rem #f8f8f8 solid;
+				border-radius: 0.3rem;
+				line-height: 1.15rem;
+				position: relative;
+				text-align: center;
+			}
+			
+			.li_1 h4 {
+				position: absolute;
+				top: 0.2rem;
+				left: 1.7rem;
+			}
+			
+			.img_1 {
+				width: 1.5rem;
+				position: absolute;
+				top: 0rem;
+				left: 0rem;
+			}
+			
+			.img_2 {
+				width: 100%;
+				height: 65%;
+				margin-top: 2rem;
+			}
+			
+			.li_2 {
+				width: 42%;
+				height: 13rem;
+				float: left;
+				margin: 0.5rem;
+				border: 0.05rem #C4C4C4 solid;
+				border-radius: 0.3rem;
+				line-height: 1.5rem;
+				position: relative;
+			}
+			
+			.tg {
+				width: 2.5rem;
+				height: 1.25rem;
+				font-size: 0.5rem;
+				border: 0.05rem #a92139 solid;
+				position: absolute;
+				right: 1.5rem;
+				bottom: 1rem;
+				color: #a92139;
+			}
+			
+			.li_2 img {
+				width: 100%;
+				height: 60%;
+			}
+			
+			.bang1 {
+				width: 4rem;
+				height: 4rem;
+				background: #ebebeb;
+				position: absolute;
+				left: 7rem;
+				top: 1.5rem;
+				border-radius: 0.2rem;
+			}
+			
+			.bang2 {
+				width: 4rem;
+				height: 4rem;
+				background: #ebebeb;
+				position: absolute;
+				left: 4.5rem;
+				top: 0;
+				border-radius: 0.2rem;
+			}
+			
+			.threebox {
+				height: 55rem;
+				margin: 0.5rem 0;
+				background: #fff;
+				overflow: hidden;
+			}
+			
+			#btn {
+				position: absolute;
+				bottom: 0.5rem;
+				right: 0.5rem;
+				width: 4.5rem;
+				color: #fff;
+				background: #EB5F3E;
+				border: none;
+				border-radius: 1rem;
+				height: 1.5rem;
+			}
+			
+			.title {
+				position: relative;
+				left: 0.5rem;
+				height: 2rem;
+			}
+			
+			.title>p {
+				float: right;
+				font-size: 0.5rem;
+				color: #929292;
+				margin: 0 1.5rem;
+				line-height: 2rem;
+			}
+			
+			.bbox {
+				border-top: 0.05rem #ebebeb solid;
+				background: #fff;
+				height: 4rem;
+				width: 100%;
+				line-height: 1.25rem;
+				text-align: center;
+				position: fixed;
+				bottom: 0rem;
+			}
+			
+			.bbox img {
+				width: 1.5rem;
+			}
+			
+			.bbox li {
+				color: #989898;
+				font-size: 0.8rem;
+				width: 25%;
+				float: left;
+				text-align: center;
+				margin: 0.5rem 0rem;
+			}
+			
+			.box {
+				white-space: nowrap;
+				overflow-x: auto;
+			}
+			
+			.box::-webkit-scrollbar {
+				width: 0;
+				height: 0;
+				display: none;
+			}
+			
+			.box div {
+				width: 35%;
+				list-style: none;
+				display: inline-block;
+				height: 10rem;
+				text-align: center;
+				margin: 0.5rem;
+				border-radius: 0.2rem;
+				border: 0.04rem #C4C4C4 solid;
+				position: relative;
+			}
+			
+			#pp {
+				border-radius: 0.2rem;
+				overflow: hidden;
+			}
+			
+			.box img {
+				width: 100%;
+				height: 75%;
+			}
+			input.error{
+				border-bottom: 1px solid red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<div class="aui-title" style=" margin: 0 0.6rem;text-align: center; height: 4rem;line-height:4.5rem;font-size:1.2rem;position: relative;">
+				嫕美国际
+			</div>
+			<div class="fj"><img src="__INDEX__/img/fujin.png"/><span>附近门店</span></div>
+			<img class="sousuo" src="__INDEX__/img/sousuo.png" />
+			<input type="text" id="search_box1" value="" placeholder="搜索" />
+		</header>
+		<div class="tishi" style="border: 0.05rem #fff solid;top:15rem; margin: 0 1.8rem; position: sticky;z-index: 1;text-align: center;background:#f8f8f8db;width: 20rem;height: 15rem;border-radius: 0.2rem;">
+			<img style="width: 8rem;margin-top: 2rem; " src="__INDEX__/img/jqqd2.png" />
+			<p style="font-weight:600 ;">商城暂未开放...<br> 敬请期待~~~
+			</p>
+		</div>
+		<div class="banner" id="banner">
+			<div class="slider_list">
+
+				<div class="swiper-slide">
+					<a href="javascript:;">
+						<img src="__INDEX__/img/lunbo1.png" title="">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;">
+						<img src="__INDEX__/img/lunbo2.png" title="">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="javascript:;">
+						<img src="__INDEX__/img/lunbo3.png" title="">
+					</a>
+				</div>
+
+			</div>
+			<ol class="pagination"></ol>
+		</div>
+		<div class="onebox">
+			<ul>
+				<li>
+					<p>新人福利</p>
+					<span>粉水新人价309元</span>
+					<img src=" __INDEX__/img/sp7.jpg" />
+
+				</li>
+				<li>
+					<p>达人专区</p>
+					<span>流金水288元</span>
+					<img src=" __INDEX__/img/jp1.png" />
+
+				</li>
+				<li id="gd">
+					<p>领券中心</p>
+					<span>大额神券免费领取</span>
+					<img src=" __INDEX__/img/sp3.jpg" />
+
+				</li>
+			</ul>
+		</div>
+		<div class="imgbox">
+			<img src="__INDEX__/img/wz.png" />
+		</div>
+		<div class="twobox">
+			<ul class="ul_1">
+				<li class="li_1">
+					<img class="img_1" src="__INDEX__/img/xsms.png" />
+					<h4>限时秒杀</h4>
+					<img class="img_2" src=" __INDEX__/img/sp5.jpg" />
+					<span style="font-size: 0.55rem; color:#a92139;">限时限量好货不停</span>
+
+				</li>
+				<li class="li_1">
+					<img class="img_1" src="__INDEX__/img/xptj.png" />
+					<h4>超值团购</h4>
+					<img class="img_2" src=" __INDEX__/img/sp2.jpg" />
+					<span style="float: left;margin: 0 0.5rem;width: 40%;">
+							
+					<h5  style=" color:#a92139;">￥89</h5>
+					<s style="font-size: 0.55rem; color:#C4C4C4;">￥189</s>
+
+					</span>
+					<div class="tg">2人团</div>
+				</li>
+				<li class="li_3">
+					<img class="img_1" src="__INDEX__/img/xsms.png" />
+					<h4>新品推荐</h4>
+
+					<span style="float: left;margin: 2rem 0.5rem;width:30%;">							
+					<h5  style=" color:#202020;">新品小魔盒</h5>
+					<span style="font-size: 0.55rem; color:#e8dd9a;">新品好物榜单</span>
+					</span>
+					<div class="bang1"><img style="width: 4rem;height: 4rem;" src="__INDEX__/img/sp1.jpg" />
+						<div>
+							<div class="bang2"><img style="width: 4rem;height: 4rem;" src="__INDEX__/img/sp2.jpg" />
+								<div>
+									<div class="bang2"><img style="width: 4rem;height: 4rem;" src="__INDEX__/img/sp3.jpg" />
+										<div>
+				</li>
+			</ul>
+			<div class="title">
+				<img style="width: 4rem" src="__INDEX__/img/shuang11.png" />
+				<!--<span style="font-size: 0.5rem;color: #808080;position: absolute;top: 1.9rem;left: 1.7rem;">BOUTIQUE</span>-->
+			</div>
+			<ul>
+				<li class="li_2">
+					<img src=" __INDEX__/img/guuci.png" />
+					<span style="float: left;margin: 0 0.5rem;width: 55%;">
+							<h5>Guuci</h5>
+							<span style="font-size: 0.55rem; color:#C4C4C4;">古驰经典包包</span>
+					<h5>￥198.0</h5><input type="button" id="btn" value="购买" />
+					</span>
+
+				</li>
+				<li class="li_2">
+					<img src=" __INDEX__/img/sp4.jpg" />
+					<span style="float: left;margin: 0 0.5rem;width: 55%;">
+							<h5>MAC</h5>
+							<span style="font-size: 0.55rem; color:#C4C4C4;">MAC口红</span>
+					<h5>￥805.0</h5><input type="button" id="btn" value="购买" />
+					</span>
+
+				</li>
+			</ul>
+			</div>
+			<div class="threebox">
+				<div class="title">
+					<h4 style="padding: 0.5rem;">
+					精选活动
+				</h4>
+				</div>
+				<img style="width: 100%; height: 12rem;margin: 0.5rem 0;" src=" __INDEX__/img/hd1.jpg" />
+				<div class="box">
+					<div id="pp">
+						<img src=" __INDEX__/img/sp5.jpg" />
+						<span style="font-size: 0.55rem; color:#202020;position: absolute;left: 2rem;bottom: 1.5rem;">卡姿兰轻雾微哑</span>
+						<span style="font-size: 0.55rem; color:#a92139;position: absolute;left: 3rem;bottom: 0.3rem;">￥218</span>
+					</div>
+					<div id="pp">
+						<img src=" __INDEX__/img/sp6.jpg" />
+						<span style="font-size: 0.55rem; color:#202020;position: absolute;left: 2rem;bottom: 1.5rem;">卡姿兰面底妆</span>
+						<span style="font-size: 0.55rem; color:#a92139;position: absolute;left: 3rem;bottom: 0.3rem;">￥518</span>
+					</div>
+					<div id="pp">
+						<img src=" __INDEX__/img/sp8.jpg" />
+						<span style="font-size: 0.55rem; color:#202020;position: absolute;left: 2rem;bottom: 1.5rem;">卡姿兰灵动眉笔</span>
+						<span style="font-size: 0.55rem; color:#a92139;position: absolute;left: 3rem;bottom: 0.3rem;">￥318</span>
+					</div>
+				</div>
+				<img style="width: 100%; height: 12rem;margin: 0.5rem 0;" src=" __INDEX__/img/hd2.jpg" />
+				<div class="box">
+					<div id="pp">
+						<img src=" __INDEX__/img/sp9.jpg" />
+						<span style="font-size: 0.55rem; color:#202020;position: absolute;left: 2rem;bottom: 1.5rem;">	CANMAKE粉底</span>
+						<span style="font-size: 0.55rem; color:#a92139;position: absolute;left: 3rem;bottom: 0.3rem;">￥118</span>
+					</div>
+					<div id="pp">
+						<img src=" __INDEX__/img/sp10.jpg" />
+						<span style="font-size: 0.55rem; color:#202020;position: absolute;left: 2rem;bottom: 1.5rem;">GINNER卸妆水</span>
+						<span style="font-size: 0.55rem; color:#a92139;position: absolute;left: 3rem;bottom: 0.3rem;">￥198</span>
+					</div>
+					<div id="pp">
+						<img src=" __INDEX__/img/sp11.jpg" />
+						<span style="font-size: 0.55rem; color:#202020;position: absolute;left: 2rem;bottom: 1.5rem;">Blaune护发素</span>
+						<span style="font-size: 0.55rem; color:#a92139;position: absolute;left: 3rem;bottom: 0.3rem;">￥168</span>
+					</div>
+				</div>
+			</div>
+			<div class="bbox">
+				<ul>
+					<li id="ns">
+						<img src="__INDEX__/img/dh-sy2.png" />
+						<p>首页</p>
+					</li>
+					<li id="qcd"><img src="__INDEX__/img/dh-dr.png" />
+						<p>达人</p>
+					</li>
+					<li id="dr"><img src="__INDEX__/img/dh-gwc.png" />
+						<p>购物车</p>
+					</li>
+					<li id="wd"><img src="__INDEX__/img/dh-wd.png" />
+						<p>我的</p>
+					</li>
+				</ul>
+			</div>
+	</body>
+	<script>
+		$(function() {
+			$('.li_2').click(xq); //精品详情
+			$('#ns').click(ns); //导航栏女神
+			$('#qcd').click(qcd); //导航栏青春豆
+			$('#dr').click(dr); //导航栏达人
+			$('#wd').click(wd); //导航栏我的
+			$('#gd').click(dr); //品牌更多
+			$('#pp').click(pp); //品牌
+		})
+		//精品详情	
+		function xq() {
+		    alert('正在开发，敬请期待');
+			// window.location.href = "http://cc.jwhcx.com/index.php/index/goods/index"
+		}
+		//导航栏女神
+		function ns() {
+			window.location.href = "#"
+		}
+		//导航栏青春豆
+		function qcd() {
+			window.location.href = "#"
+		}
+		//导航栏达人
+		function dr() {
+			window.location.href = "#"
+		}
+		//导航栏我的
+		function wd() {
+			window.location.href = "http://cc.jwhcx.com/index.php/index/member"
+		}
+		//更多
+		function gd() {
+			window.location.href = "#"
+		}
+		//品牌
+		function pp() {
+			window.location.href = "#"
+		}
+	</script>
+
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			var slider_content = document.querySelector('#banner .slider_list');
+			var slider_items = slider_content.children;
+			var num = slider_items.length;
+			slider_content.style.width = (num + 2) * 100 + '%';
+			slider_content.style.transform = 'translateX(-' + 100 / (num + 2) + '%)';
+			slider_content.appendChild(slider_items[0].cloneNode(true));
+			slider_content.insertBefore(slider_items[num - 1].cloneNode(true), slider_items[0]);
+			var pagination = document.querySelector('#banner ol');
+			for(var i = 0; i < num; i++) {
+				var creatLi = document.createElement('li');
+				pagination.appendChild(creatLi);
+			}
+			for(var i = 0; i < num + 2; i++) {
+				slider_items[i].style.width = 100 / (num + 2) + '%';
+			}
+			var pagination_items = pagination.children;
+			pagination_items[0].classList.add('active');
+			var iNow = 1;
+			var x = -iNow * slider_items[0].offsetWidth;
+			//在这里设置一个开关,是css运动结束后解锁
+			var bReady = true;
+			slider_content.addEventListener('touchstart', function(ev) {
+				clearInterval(timer);
+				if(bReady == false) {
+					return;
+				}
+				bReady = false;
+				slider_content.style.transition = 'none';
+				var disX = ev.targetTouches[0].pageX - x;
+				var downX = ev.targetTouches[0].pageX;
+
+				function fnMove(ev) {
+					x = ev.targetTouches[0].pageX - disX;
+					slider_content.style.transform = 'translate3d(' + x + 'px,0,0)';
+				}
+
+				function fnEnd(ev) {
+					var upX = ev.changedTouches[0].pageX;
+					//判断是否移动距离大于50
+					if(Math.abs(upX - downX) > 50) {
+						//左边移动
+						if(upX - downX < 0) {
+							iNow++;
+							if(iNow == slider_items.length) {
+								iNow = slider_items.length - 1;
+							}
+							if(iNow == num + 1) {
+								pagination_items[num - 1].classList.remove('active');
+								pagination_items[0].classList.add('active');
+							} else {
+								pagination_items[iNow - 1].previousElementSibling.classList.remove('active');
+								pagination_items[iNow - 1].classList.add('active');
+							}
+
+						} else {
+							//右边移动
+							iNow--;
+							if(iNow == -1) {
+								iNow = 0;
+							}
+							if(iNow == 0) {
+								pagination_items[0].classList.remove('active');
+								pagination_items[num - 1].classList.add('active');
+							} else {
+								pagination_items[iNow - 1].nextElementSibling.classList.remove('active');
+								pagination_items[iNow - 1].classList.add('active');
+							}
+						}
+					}
+					//储存此时ul的位置
+					x = -iNow * slider_items[0].offsetWidth;
+					slider_content.style.transform = 'translate3d(' + x + 'px,0,0)';
+					slider_content.style.transition = '500ms all ease';
+
+					//监听li 当移动到两端的li时  瞬间移回
+					function tEnd() {
+						if(iNow == num + 1) {
+							iNow = 1;
+						}
+						if(iNow == 0) {
+							iNow = num;
+						}
+						slider_content.style.transition = 'none'
+						x = -iNow * slider_items[0].offsetWidth;
+						slider_content.style.transform = 'translate3d(' + x + 'px,0,0)';
+						bReady = true;
+					}
+					slider_content.addEventListener('transitionend', tEnd, false);
+					//释放内存
+					document.removeEventListener('touchend', fnEnd, false);
+					document.removeEventListener('touchmove', fnMove, false);
+				}
+
+				document.addEventListener('touchmove', fnMove, false);
+				document.addEventListener('touchend', fnEnd, false);
+				//阻止默认事件
+				ev.preventDefault();
+			}, false);
+
+			//自动轮播
+			var timer = setInterval(function() {
+				iNow++;
+				if(iNow == num + 1) {
+					x = -1 * slider_items[0].offsetWidth;
+					pagination_items[num - 1].classList.remove('active');
+					pagination_items[0].classList.add('active');
+					slider_content.style.transition = 'none';
+					slider_content.style.transform = 'translate3d(' + 0 * slider_items[0].offsetWidth + 'px,0,0)';
+					setTimeout(function() {
+						slider_content.style.transition = '500ms all ease';
+						slider_content.style.transform = 'translate3d(' + x + 'px,0,0)';
+					})
+					bReady = true;
+					iNow = 1;
+				} else {
+					slider_content.style.transition = 'none';
+					x = -iNow * slider_items[0].offsetWidth;
+					slider_content.style.transform = 'translate3d(' + x + 'px,0,0)';
+					slider_content.style.transition = '500ms all ease';
+					bReady = true;
+					pagination_items[iNow - 1].previousElementSibling.classList.remove('active');
+					pagination_items[iNow - 1].classList.add('active');
+				}
+			}, 3000)
+		}, false);
+	</script>
+	<script>
+		var u = navigator.userAgent;
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		var isUc = u.indexOf('UCBrowser') > -1; //uc浏览器
+		//var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		if(isAndroid && isUc) { /*注释5*/
+			$('.box .banner').on('touchstart', function() {
+				$(document).on('touchmove', function(e) {
+					e.preventDefault();
+				});
+				$(document).on('touchend', function() {
+					$(document).unbind();
+				});
+			});
+		}
+	</script>
+
+</html>

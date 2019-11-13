@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="referrer" content="no-referrer">
+		<script type="text/javascript" src="__INDEX__/js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="__INDEX__/js/ym_bbox.js"></script>
+		<title></title>
+	</head>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		
+		a {
+			text-decoration: none;
+		}
+		
+		ul,
+		li {
+			list-style: none;
+		}
+		
+		body {
+			background: #f8f8f8;
+			width: 100%;
+			height: 50rem;
+			z-index: -10;
+			background-size: cover;
+		}
+		
+		header {
+			position: fixed;
+			background: #fff;
+			color: #202020;
+			height: 4rem;
+			z-index: 2;
+			width: 100%;
+			top: 0;
+		}
+		
+		.tlbox {
+			margin: 0 0.5rem;
+			height: 25rem;
+			background: #202020;
+			border-radius: 0.5rem;
+			position: relative;
+			top: 3rem;
+		}
+		
+		.tlbox {
+			text-align: center;
+			color: #e8dd9a;
+		}
+		/*.card span {
+			font-size: 0.85rem;
+			position: absolute;
+			bottom: 2rem;
+			left: 2rem;
+			color: #e8dd9a;
+			font-size: 1.2rem;
+			font-weight: 600;
+		}*/
+		
+		.num {
+			position: absolute;
+			bottom: 2rem;
+			left: 2rem;
+			color: #e8dd9a;
+			font-size: 1.2rem;
+			font-weight: 600;
+		}
+		
+		.card {
+			background: url(__INDEX__/img/card.png) no-repeat;
+			background-size: 100% 100%;
+			height: 12rem;
+			margin: 0.5rem;
+			position: relative;
+			top: 2rem;
+		}
+		
+		.name {
+			position: absolute;
+			top: 2.5rem;
+			left: 1.5rem;
+			color: #e8dd9a;
+			font-size: 1.2rem;
+			width: 7rem;
+			text-align: center;
+		}
+		
+		#kaitong {
+			width: 6rem;
+			height: 2.5rem;
+			color: #202020;
+			background: linear-gradient(#fbf4c9, #ead869, #f3e06b);
+			border: 0;
+			border-radius: 0.4rem;
+			font-size: 1rem;
+			font-weight: 600;
+			position: absolute;
+			right: 1rem;
+			bottom: 1.5rem;
+		}
+		
+		#qiandao {
+			width: 3rem;
+			height: 1.5rem;
+			color: #e8dd9a;
+			border: none;
+			font-size: 1rem;
+		}
+		
+		#qdbox {
+			position: absolute;
+			right: 1.5rem;
+			top: 2rem;
+			width: 3rem;
+			height: 1.5rem;
+		}
+		
+		.onebox {
+			background: #202020;
+			height: 9rem;
+			position: relative;
+			margin: 0rem 0.6rem 1rem;
+			border-radius: 0.5rem;
+			top: 3rem;
+		}
+		
+		.ddd {
+			background: linear-gradient(to bottom right, #2f2f2f, #06050c);
+			/*background: #191919;*/
+			width: 4rem;
+			height: 4rem;
+			border: 0.09rem #4e4a30 solid;
+			border-radius: 5rem;
+			text-align: center;
+			line-height: 4rem;
+			margin: 0.3rem 0.6rem;
+		}
+		
+		.onebox ul {
+			position: absolute;
+			width: 100%;
+			top: 2.2rem;
+			display: flex;
+		}
+		
+		.onebox li {
+			flex: 1;
+			text-align: center;
+			width: 25%;
+		}
+		
+		.onebox span {
+			font-size: 0.85rem;
+			color: #e8dd9a;
+			font-weight: 600;
+		}
+		
+		.onebox p {
+			font-size: 0.95rem;
+			color: #e8dd9a;
+		}
+		
+		.imgbox {
+			position: absolute;
+			top: -25%;
+			margin: 0rem 38.7%;
+			/*background: #372244;*/
+			width: 5.5rem;
+			height: 5.5rem;
+			border-radius: 3rem;
+		}
+		
+		.imgbox2 {
+			background: #fff;
+			border-radius: 3rem;
+			height: 4.2rem;
+			width: 4.2rem;
+			text-align: center;
+			position: absolute;
+			top: 5rem;
+		}
+		
+		.imgbox2 img {
+			width: 100%;
+			border-radius: 5rem;
+		}
+		
+		.cz {
+			border: none;
+			color: #4269F2;
+			position: absolute;
+			width: 60%;
+			height: 1.5rem;
+			text-align: center;
+			right: -6.5rem;
+			border-radius: 1rem;
+			margin-top: 3.5rem;
+			background-color: #ffffff;
+		}
+		
+		.sz {
+			width: 10rem;
+			position: absolute;
+			top: 5rem;
+			left: 0rem;
+			font-weight: 600;
+			text-align: center;
+			text-decoration: none;
+		}
+		
+		.sz a {
+			color: #e8dd9a;
+		}
+		
+		.twobox {
+			margin: 4rem 0.5rem 1rem 0.5rem;
+			background: #ffffff;
+			height: 6rem;
+			border-radius: 0.5rem;
+		}
+		
+		#ft {
+			position: absolute;
+			right: 5.5rem;
+			top: 2rem;
+		}
+		/*.threebox {
+			margin: 0 0.6rem 1rem;
+			
+			background: #fff;
+			height: 3rem;
+			border-radius: 0.5rem;
+			position: relative;
+		}
+		
+		.threebox ul {
+			width: 11rem;
+			float: left;
+			margin: 1.4rem;
+		}
+		
+		.threebox ul li a {
+			text-decoration: none;
+		}
+		
+		.threebox span {
+			position: absolute;
+			top: 0.7rem;
+			left: 1rem;
+		}
+		
+		.threebox img {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+		}*/
+		
+		.fourbox {
+			margin: 0rem 0.5rem;
+			background: #fff;
+			height: 15rem;
+			border-radius: 0.5rem;
+		}
+		
+		.fourbox h4 {
+			margin: 1rem;
+			padding-top: 1rem;
+		}
+		
+		.fourbox img {
+			width: 1.7rem;
+			height: 1.5rem;
+		}
+		
+		.twobox ul {
+			position: relative;
+			top: 1.5rem;
+			display: flex;
+		}
+		
+		.twobox p {
+			font-weight: 600;
+		}
+		
+		.twobox li {
+			flex: 1;
+			text-align: center;
+			line-height: 1.7rem;
+		}
+		
+		.fourbox li {
+			flex: 1;
+			text-align: center;
+			float: left;
+			width: 25%;
+			margin: 0.6rem 0rem;
+		}
+		.twobox a{
+			color: #202020;
+		}
+		.twobox img{
+			width:2rem
+		}
+		.bbox {
+			border-top: 0.05rem #ebebeb solid;
+			background: #fff;
+			height: 4rem;
+			width: 100%;
+			line-height: 1.25rem;
+			text-align: center;
+			position: fixed;
+			bottom: 0rem;
+		}
+		
+		.bbox img {
+			width: 1.5rem;
+		}
+		
+		.bbox li {
+			color: #989898;
+			font-size: 0.8rem;
+			width: 25%;
+			float: left;
+			text-align: center;
+			margin: 0.5rem 0rem;
+		}
+		
+		#fenxiang {
+			position: absolute;
+			color: #fff;
+			background: #FF1C1C;
+			border-radius: 15px;
+			font-size: 14px;
+			width: 75px;
+			text-align: center;
+			left: 330px;
+			top: 53px;
+			display: none;
+		}
+		
+		.add {
+			position: absolute;
+			background: rgba(226, 8, 8, 0.68);
+			left: 4rem;
+			top: 0.5rem;
+			width: 35%;
+			border-radius: 0.3rem;
+			color: #ffffff;
+			display: none;
+			font-size: 0.5rem;
+		}
+		
+		.box2 {
+			background: #f8f8f8;
+			width: 100%;
+			height: 20rem;
+		}
+		
+		.chongzhi {
+			position: absolute;
+			top: 1.3rem;
+			right: 2.5rem;
+			color: #fff;
+			text-decoration: none;
+		}
+		
+		.ftbox {
+			position: absolute;
+    background: #202020;
+    border: 0.09rem #4e4a30 solid;
+    height: 8rem;
+    z-index: 1;
+    line-height: 2.5rem;
+    width: 75%;
+    margin: 0 3rem;
+    border-radius: 0.5rem;
+    display: none;
+		}
+		#ftbtn{
+			width: 5rem;
+			height: 1.5rem;
+			color: #202020;
+			background: linear-gradient(#fbf4c9, #ead869, #f3e06b);
+			border: 0;
+			border-radius: 0.4rem;
+			font-size: 1rem;
+		}
+		select{
+			width: 7rem;
+			height: 1.5rem;
+			background: #fff;
+			margin:0.5rem 0 ;
+		}
+		.ftbox p{
+			float: left;
+    margin-left: 1.5rem;
+		}
+		.ftbox img{
+			    width: 1.5rem;
+    position: absolute;
+    top: 0.3rem;
+    right: 0.5rem;
+		}
+	</style>
+
+	<body>
+		<header>
+			<div class="aui-title" style=" line-height: 4.5rem; width:100%; text-align: center;font-size:1.2rem;position: relative;">{$userData['memberName']}</div>
+			<!--<a href="{:url('/index/member/recharge')}" class="chongzhi">充值
+			</a>-->
+			<a href="{:url('/index/member/editUser')}"><img style="position: absolute;right: 1.5rem;top:1.5rem;width: 1.7rem;" src="__INDEX__/img/shezhi.png" /></a>
+		</header>
+		<div class="tlbox">
+			<div class="card">
+				<div class="name">
+					<p class="p_1">{$userData['memberName']}</p>
+				</div>
+
+				<div id="qdbox">
+					<a onclick="qiandao()" id="qiandao">未签到</a>
+				</div>
+				<div class="sz">
+					<a href="{:url('/index/member/editUser')}">{$userData['username']}</a>
+				</div>
+				<div class="num"><span>￥199</span></div>
+				<input type="button" id="kaitong" value="充值">
+				<div id="ft">
+					<span>复购</span>
+				</div>
+			</div>
+			<div class="ftbox">
+				<h4>复购</h4>		<img id="close" src="__INDEX__/img/close.png"/>		
+				<p>复购金额：</p>
+				<select id="select">
+					<option value="100">100</option>
+					<option value="200">200</option>
+					<option value="300">300</option>
+					<option value="500">500</option>
+					<option value="all">全部复购</option>
+				</select><br>
+				<input type="button" name="" id="ftbtn" value="确定" />
+			</div>
+
+			<div class="onebox">
+				<h3>专享特权</h3>
+				<ul>
+					<li class="oneli">
+						<div class="ddd"><span>{$userData['beans']}</span></div>
+						<p>余额提现</p>
+					</li>
+					<li class="twoli" style="position: relative;">
+						<div class="add"></div>
+						<div class="ddd"> <span>
+					{$userData['beans']}
+					</span></div>
+						<p>青春豆</p>
+					</li>
+					<li>
+
+						<div class="ddd"><span>
+					{$userData['mbeans']?$userData['mbeans']:0}
+				</span></div>
+						<p>豆资产</p>
+					</li>
+					<li>
+						<a href="{:url('/index/member/reOrder')}">
+							<div class="ddd"> <span>{$userData['consumption']}</span></div>
+							<p>购物金</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="twobox">
+			<ul>
+				<li class="threeli">
+					<a href="{:url('shop/shoporder')}"><p>我的订单</p>
+					<span>
+						<img src="__INDEX__/img/dd1.png"/>
+					</span></a>
+				</li>
+				<li class="fourli">
+					<p>我的收藏</p>
+					<span>
+						<img src="__INDEX__/img/dd2.png"/>
+					</span></li>
+				<li>
+					<p>动态</p>
+					<span>
+						<img src="__INDEX__/img/dd3.png"/>
+					</span></li>
+			</ul>
+		</div>
+		<div class="box2">
+			<div class="fourbox">
+				<h4>我的服务</h4>
+				<ul>
+					<li>
+						<a href="{:url('/index/order/addrList')}"><img src="__INDEX__/img/dizhi.png" /></a>
+						<p>地址管理</p>
+					</li>
+					<li>
+						<a href="{:url('/index/member/agency')}">
+							<img src="__INDEX__/img/dl.png" /></a>
+						<p>代理</p>
+					</li>
+					<li>
+						<a href="#"><img src="__INDEX__/img/fwzx.png" /></a>
+						<p>服务中心</p>
+					</li>
+					<li>
+						<img src="__INDEX__/img/team.png" />
+						<p>我的团队</p>
+					</li>
+					<li>
+						<a href="{:url('/index/member/share')}"><img src="__INDEX__/img/fx.png" /></a>
+						<p>邀请好友</p>
+					</li>
+					<li>
+						<a href="{:url('/index/member/realName')}"><img src="__INDEX__/img/smrz.png" /></a>
+						<p>实名认证</p>
+					</li>
+					<li>
+						<a href="{:url('/index/member/bz')}"><img src="__INDEX__/img/kfbz.png" /></a>
+						<p>帮助</p>
+					</li>
+					<li>
+						<a href="{:url('/index/member/recharge')}"><img src="__INDEX__/img/cz.png" /></a>
+						<p>充值</p>
+					</li>
+				</ul>
+				<div id="fenxiang">
+					邀請+300
+				</div>
+
+			</div>
+		</div>
+		<<div class="bbox">
+    <ul>
+        <li id="sy">
+            <img src="__INDEX__/img/dh-sy.png" />
+            <p>首页</p>
+        </li>
+        <li id="dr"><img src="__INDEX__/img/dh-dr.png" />
+            <p>达人</p>
+        </li>
+        <li id="gwc"><img src="__INDEX__/img/dh-gwc.png" />
+            <p>购物车</p>
+        </li>
+        <li id="wd"><img src="__INDEX__/img/dh-wd2.png" />
+            <p>我的</p>
+        </li>
+    </ul>
+</div>
+</body>
+<script>
+    $(function() {
+        $('#sy').click(sy); //导航栏女神
+        $('#dr').click(dr); //导航栏青春豆
+        $('#gwc').click(gwc); //导航栏达人
+        $('#wd').click(wd); //导航栏我的
+        $('#gd').click(dr); //品牌更多
+    })
+		$("#ft").click(function() {
+			$('.ftbox').show();
+		})
+		$("#close").click(function() {
+			$('.ftbox').hide();
+		})
+		$("#ftbtn").click(function() {
+			ft();
+		})
+		$("#kaitong").click(function() {
+			window.location.href = "{:url('/index/member/recharge')}"
+		})
+		$(".oneli").click(function() {
+			window.location.href = "{:url('/index/member/embody')}"
+		})
+		$(".twoli").click(function() {
+			window.location.href = "{:url('/index/member/beorder')}"
+		})
+		var b = {$userData['isqd']};
+		var a = {$userData['member']};
+		vip();
+		vip2();
+
+		function vip() {
+			if(a == 0 && b == 2) {
+				$('#qdbox').html('');
+				var html = '';
+				html += '<a  onclick="qiandao()" id="qiandao">未签到</a>';
+				$('#qdbox').append(html);
+			} else if(a == 0 && b == 1) {
+				$('#qdbox').html('');
+				var html = '';
+				html += '<a  id="qiandao">已签到</a>';
+				$('#qdbox').append(html);
+			} else if(a > 0 && b == 2) {
+				qiandao();
+			} else if(a > 0 && b == 1) {
+				$('#qdbox').html('');
+				var html = '';
+				html += '<a  id="qiandao">已签到</a>';
+				$('#qdbox').append(html);
+			}
+		}
+
+		function vip2() {
+			//			if(a>0){
+			//				$('#kaitong').val('继续开通');
+			//			} 
+			if(a == 1) {
+				$('.num').html('');
+				var html = '';
+				html += '<span>￥199</span>';
+				$('.num').append(html);
+			} else if(a == 2) {
+				$('.num').html('');
+				var html = '';
+				html += '<span>￥299</span>';
+				$('.num').append(html);
+			} else if(a == 3) {
+				$('.num').html('');
+				var html = '';
+				html += '<span>￥599</span>';
+				$('.num').append(html);
+			}
+		}
+
+		function showTag(code) {
+			var html = '';
+			html += '<span>' + '+' + code + '</span>';
+			$('.add').append(html);
+			$('.add').show();
+			timeTag = setTimeout('hideTag()', 1500);
+		}
+
+		function ft() {
+			var aaaa	=$("#select").val();
+			if(aaaa=='all'){
+				var dataXml = 'all';
+			}else{
+				var ftNum	=$("#select").val();
+				var	dataXml = ftNum;
+			}			
+			//			 alert(dataXml);
+			$.ajax({
+				type: 'POST',
+				url: "{:url('/index/member/ft')}",
+				data: {
+					"type":'ft',
+					"ftNum":dataXml,
+				},
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				success: function(response) {
+					if(response == '复投成功') {
+						alert('复投成功');
+						hideTag();
+					} else {
+						alert(response);
+					}
+					//			 		
+
+				},
+				timeout: 14400000, // 设置请求超时时间（毫秒）。此设置将覆盖全局设置。
+				error: function(XMLHttpRequest, errMes, exception) {
+					console.log(exception);
+				},
+				dataType: "json"
+			});
+		}
+		function hideTag() {
+			$('.add').hide();
+			timeTag = setTimeout('showTag()', 3000);
+			clearTimeout(timeTag);
+			window.location.reload();
+		}
+		var qd = 'qd';
+
+		function qiandao() {
+			var dataXml = 'qd';
+			// alert(dataXml);
+			$.ajax({
+				type: 'POST',
+				url: "{:url('/index/member/qd')}",
+				data: {
+					data: dataXml
+				},
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				success: function(response) {
+					//					alert(response);
+					var code = response.code;
+					var qd = response.qd
+					if(code == 0) {
+						alert('会员豆子不足');
+					}
+                    if(response == 100) {
+                        alert('请先实名认证');
+                    }
+					if(qd == 2) {
+						$('#qdbox').html('');
+						var html = '';
+						html += '<a  id="qiandao">已签到</a>';
+						$('#qdbox').append(html);
+
+						// $('#qiandao').attr('disabled','disabled');
+						showTag(code);
+						//						window.location.reload();
+					}
+				},
+				timeout: 14400000, // 设置请求超时时间（毫秒）。此设置将覆盖全局设置。
+				error: function(XMLHttpRequest, errMes, exception) {
+					console.log(exception);
+				},
+				dataType: "json"
+			});
+
+		}
+	</script>
+
+</html>

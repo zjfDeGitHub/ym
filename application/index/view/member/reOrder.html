@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="referrer" content="no-referrer">
+
+		<title></title>
+		<style>
+			body {
+				background: #FFFFFF;
+				margin: 0;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			p {
+				margin: 0
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			header {
+				background: #638CFF;
+				height: 7.8rem;
+			}
+			
+			.mbox {
+				background: #FFFFFF;
+			}
+			
+			.bbox {
+				background: #FFFFFF;
+				width: 100%;
+				height: 40rem;
+			}
+			
+			.mbox {
+				
+				height: 8rem;
+    /* margin-top: 1.8rem; */
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+    border-radius: 12px;
+    border: 1px outset;
+    position: relative;
+    bottom: 49.5rem;
+			}
+			.bbox li{
+				    border: 1px outset;
+    height: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    margin-right: 1.2rem;
+    position: relative;
+			}
+			.bbox ul{
+				    margin: 6rem 0 0 1.2rem;
+			}
+			.p_1{
+				float: left;
+				position: absolute;
+    top: 0.3rem;
+    left: 1rem;
+				
+			}
+			.p_2{
+				 position: absolute;
+    top: 0.3rem;
+    right: 1rem;
+			}
+			.p_3{
+				float: left;
+				position: absolute;
+    top: 3rem;
+    left: 1.5rem;
+				
+			}
+			.p_4{
+				 position: absolute;
+    top: 3rem;
+    right: 1.5rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<p onclick="back();"><img src="__INDEX__/img/back.png" style="width: 2rem; position: absolute;top: 1rem;left: 0.5rem;" alt="">
+            </p>
+			<div class="aui-title" style=" line-height: 4.5rem; width:100%; text-align: center;font-size:1.4rem;color: #FFFFFF;">我的钱包</div>
+		</header>
+		<div class="bbox">
+		<ul>
+			{volist name='reData' id='vo'}
+			<li><p class="p_1"><span>充值:￥{$vo.money}</span></p>
+				<p class="p_2"> <span>{$vo.status}</span> {$vo.time}</p>
+			</li>
+			{/volist}
+
+		</ul>
+		</div>
+		<div class="mbox">
+			<p class="p_3">我的充值金额:￥{$sum[0]['sum(money)']}<span></span></p>
+				<!--<p class="p_4">总粉丝数：<span></span></p>-->
+		</div>
+	</body>
+<script type="text/javascript">
+	function back () {
+			window.location.href="http://cc.jwhcx.com/index.php/index/member"
+		}
+</script>
+</html>

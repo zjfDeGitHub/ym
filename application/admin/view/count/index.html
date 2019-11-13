@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+		<meta charset="utf-8">
+		<script src="__ADMIN__/style/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__ADMIN__/style/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style>
+			.page-breadcrumbs{
+				margin-top: 45px;
+			}
+			#main,#main2{
+				margin-left:30px;
+				margin-top: 50px;
+			}
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 头部 -->
+{include file="common/top"}
+<!-- /头部 -->
+
+	<div class="main-container container-fluid">
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        {include file="common/left"}
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+            	<table style="width:100%;height:200px;text-align: center;">
+			<tr style="font-weight: bold;color: #666;">
+				<td>用户总数<br/><span style="color: green;font-size: 30px;">{$totleUser}</span></td>
+				<td>总豆资产数<br/><span style="color: green;font-size: 30px;">{$totleMbeans}</span></td>
+				<td>总青春豆数<br/><span style="color: green;font-size: 30px;">{$totleBeans}</span></td>
+				<td>总充值数（已通过）<br/><span style="color: green;font-size: 30px;">{$CountRe}</span></td>
+				<td>每日提现金额<br/><span  style="color: green;font-size: 30px;">{$todayEmbodyNum}</span></td>
+			</tr>
+            <tr style="font-weight: bold;color: #666; width: 100%;">
+                <td>普通会员<br/><span style="color: green;font-size: 30px;">{$memberYk}</span></td>
+                <td>青春达人<br/><span style="color: green;font-size: 30px;">{$member1}</span></td>
+                <td>时尚达人<br/><span style="color: green;font-size: 30px;">{$member2}</span></td>
+                <td>魅力达人<br/><span style="color: green;font-size: 30px;">{$member3}</span></td>
+                <td>每日充值金额<br/><span style="color: green;font-size: 30px;">{$todayRechargeNum}</span></td>
+            </tr>
+			<!--<tr style="display: block;height: 80px;">
+				<td>2019-05-11</td>
+			</tr>
+			<tr style="display: block;height: 80px;">
+				<td>2019-05-11</td>
+			</tr>-->
+			
+		</table>
+<div id="main3" style="width: 400px;height:200px;top: 20px;left: 70px;"></div>
+
+		<table class="table table-bordered table-hover";>
+			 <!-- Page Sidebar -->
+        <!-- /Page Sidebar -->
+                        <!--<form action="{:url('index/rlst')}" method="post">
+                            <input type="text" name="value" class="text"/>
+                            <select name="type">
+                                <option value="username">会员名称</option>
+                                <option value="rcode">订单编号</option>
+                            </select>
+                            <input type="submit" value="搜索" class="search"/>
+
+                        </form>
+                        
+                        <a  href="{:url('index/rlst',['status'=>1])}"><input type="button" value="等待确认" class="search"/></a>
+                        <a  href="{:url('index/rlst')}"><input type="button" value="清空" class="search"/></a>
+                        -->
+                        <thead class="">
+                        	<p style="font-size: 20px;font-weight: bold;text-align: center;margin:40px 0;">近三天订单量</p>
+                            <tr>
+                                <th class="text-center">时间</th>
+                                <th class="text-center">充值编号</th>
+                                <th class="text-center">会员名称</th>
+                                <th class="text-center">转态</th>
+                                <th class="text-center">充值类型</th>
+                                <th class="text-center">充值的会员套餐</th>
+                                <th class="text-center">充值金额</th>
+                                <th class="text-center">发放青春豆</th>
+                                <th class="text-center">发放方式</th>
+                                <!--<th class="text-center">操作</th>-->
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="ReData" id="vo"}
+                        <tr>
+                            <td align="center">{$vo['time']}</td>
+                            <td align="center">{$vo['rcode']}</td>
+                            <td align="center">{$vo['username']}</td>
+                            <td align="center" class="confirm"><?php if($vo['status'] == 1) echo "等待确认"; if($vo['status'] == 2) echo "通过"; ?></td>
+                            <?php
+                               if ($vo['member'] == 1){
+                                    $vo['member'] = '青春达人';
+                                    }else if($vo['member'] == 2){
+                                        $vo['member'] = '美丽达人';
+                                    }else if($vo['member'] == 3){
+                                        $vo['member'] = '时尚达人';
+                                    }else{
+                                        $vo['member'] = '直接充值';
+                               }
+                            ?>
+                            <td align="center"><?php if($vo['type'] == 1) echo "会员充值"; if($vo['type'] == 2) echo "普通充值"; ?></td>
+                            <td align="center">{$vo['type']==1?$vo['member']:" "}</td>
+                            <td align="center">{$vo['money']}</td>
+                            <td align="center">{$vo['rbeans']}</td>
+                            <td align="center"><?php if($vo['type'] == 1) echo "分期发放"; if($vo['type'] == 2) echo "立即发放"; ?></td>
+
+                            
+                        </tr>
+                        {/volist}
+
+                        </tbody>
+                    </table>
+		
+		
+		<div id="main2" style="width: 1400px;height:400px;"></div>
+		<div id="main" style="width: 1400px;height:400px;" style="margin: 0 auto;overflow: scroll;"></div>	
+		</div></div></div></div>
+		<script type="text/javascript">
+			a();
+			b();
+			c();
+        // 基于准备好的dom，初始化echarts实例
+        function a(){
+        	var myChart = echarts.init(document.getElementById('main'));
+        	var date1=[{volist name='OrderData' id='OrderDataC'}
+					'{$OrderDataC['date']}',
+						{/volist}];
+				console.log(date1[0]);
+        	var arr=[{volist name='OrderData' id='OrderDataC'}
+					{$OrderDataC['totalmoney'].','}
+						{/volist}];
+        // 指定图表的配置项和数据
+        option = {
+		    title: {
+		        text: '近7日订单金额增长趋势'
+		    },
+		    tooltip: {
+		        trigger: 'axis'
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		//     toolbox: {
+		//         feature: {
+		//             saveAsImage: {}
+		//         }
+		//     },
+		    xAxis: {
+		        type: 'category',
+		        boundaryGap: false,
+		        data:date1
+		    },
+		    yAxis: {
+		        type: 'value'
+		    },
+		    dataZoom: [{
+                              type: 'slider',
+                              show: true, //flase直接隐藏图形
+                              xAxisIndex: [0],
+                              left: '5.8%', //滚动条靠左侧的百分比
+                              bottom: -5,
+                              start: 0,//滚动条的起始位置
+                              end:80 //滚动条的截止位置（按比例分割你的柱状图x轴长度）
+                          }],
+		    series: [
+		        {
+		            name:'充值金额',
+		            type:'line',
+		            stack: '总量',
+		            data:arr
+		        }
+		    ]
+		};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        }
+        function b(){
+        	var myChart = echarts.init(document.getElementById('main2'));
+        	var date2=[{volist name='OrderData' id='OrderDataC'}
+					'{$OrderDataC['date']}',
+						{/volist}];
+        	var arr2=[{volist name='OrderData' id='OrderDataC'}
+					{$OrderDataC['total'].','}
+						{/volist}];
+        // 指定图表的配置项和数据
+        option = {
+		    title: {
+		        text: '近7日订单量增长趋势'
+		    },
+		    tooltip: {
+		        trigger: 'axis'
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		//     toolbox: {
+		//         feature: {
+		//             saveAsImage: {}
+		//         }
+		//     },
+		    xAxis: {
+		        type: 'category',
+		        boundaryGap: false,
+		        data:date2
+		    },
+		    yAxis: {
+		        type: 'value'
+		    },
+		    dataZoom: [{
+                              type: 'slider',
+                              show: true, //flase直接隐藏图形
+                              xAxisIndex: [0],
+                              left: '4.2%', //滚动条靠左侧的百分比
+                              bottom: -5,
+                              start: 0,//滚动条的起始位置
+                              end:80 //滚动条的截止位置（按比例分割你的柱状图x轴长度）
+                          }],
+		    series: [
+		        {
+		            name:'新增订单',
+		            type:'line',
+		            stack: '总量',
+		            data:arr2
+		        }
+		    ]
+		};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        }
+                function c(){
+        		// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
+	var chart1 = echarts.init(document.getElementById("main3"));
+	
+	// 圆环图各环节的颜色
+	var color = ['#8378ea', '#32c5e9', '#9fe6b8', '#ffdb5c'];
+	
+	// 圆环图各环节的名称和值(系列中各数据项的名称和值)
+	var data =[{  
+	                name: "普通会员",
+	                value: {$memberYk}
+	            },{
+	                name: "青春达人",
+	                value: {$member1}
+	            },{
+	                name: "时尚达人",
+	                value: {$member2}
+	            },{
+	                name: "魅力达人",
+	                value: {$member3}
+	            },];
+	  
+	// 指定图表的配置项和数据
+	var option = {
+		
+		//背景色
+//		backgroundColor: {			// 背景颜色
+//		    type: 'linear',
+//		    x: 0,
+//		    y: 0,
+//		    x2: 0,
+//		    y2: 1,
+//		    colorStops: [{
+//		        offset: 0, color: 'rgba(0,0,0,0.4)' // 0% 处的颜色
+//		    }, {
+//		        offset: 0.5, color: 'rgba(0,0,0,0.4)' 	// 50% 处的颜色
+//		    }, {
+//		        offset: 1, color: 'rgba(0,0,0,0.4)' // 100% 处的颜色
+//		    }],
+//		    globalCoord: false // 缺省为 false
+//		},
+//		
+	    // 标题
+	    title: [{
+	        text: '会员统计',
+	        top:'1%',
+	        left:'2%',
+	        textStyle:{
+	            color: '#202020',
+	            fontSize:16,
+	        }
+	    }],
+	    
+	    // 图例
+	    legend: [{
+	        selectedMode:false,             // 图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。
+	        top: '12%',
+	        left: 'center',
+	        textStyle: {                      // 图例的公用文本样式。
+	            fontSize: 12,
+	            color: '#202020'
+       		},
+	        data: ["普通会员","青春达人","时尚达人","魅力达人"]
+	    }],
+	    
+	    // 提示框
+	    tooltip: {
+	        show: true,                 // 是否显示提示框
+	        formatter: '{b} </br> {c}人</br> 占比{d}%'      // 提示框显示内容,此处{b}表示各数据项名称，此项配置为默认显示项，{c}表示数据项的值，默认不显示，({d}%)表示数据项项占比，默认不显示。
+	    },
+	    
+	    // graphic 是原生图形元素组件。可以支持的图形元素包括：image, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
+	    graphic: {
+	        type: 'text',               // [ default: image ]用 setOption 首次设定图形元素时必须指定。image, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
+	        top: 'center',              // 描述怎么根据父元素进行定位。top 和 bottom 只有一个可以生效。如果指定 top 或 bottom，则 shape 里的 y、cy 等定位属性不再生效。『父元素』是指：如果是顶层元素，父元素是 echarts 图表容器。如果是 group 的子元素，父元素就是 group 元素。
+	        right: 'center',             // 同上
+	        style: {
+	            text: '',       // 文本块文字。可以使用 \n 来换行。[ default: '' ]
+	            fill: '#fff',           // 填充色。
+	            fontSize: 5,           // 字体大小
+	            fontWeight: 'normal'		// 文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'
+	        }
+	    },
+	    
+	    // 系列列表
+	    series: [
+	    {
+	        name: '圆环图系列名称',         // 系列名称
+	        type: 'pie',                    // 系列类型 
+	        center:['40%','65%'],           // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
+	        radius: [35, 75],			// 饼图的半径，数组的第一项是内半径，第二项是外半径。[ default: [0, '75%'] ]
+	        roseType : 'area',
+	        hoverAnimation: true,           // 是否开启 hover 在扇区上的放大动画效果。[ default: true ]
+	        color: color,                   // 圆环图的颜色
+	        label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
+	            normal: {
+	                show: true,             // 是否显示标签[ default: false ]
+	                position: 'outside',    // 标签的位置。'outside'饼图扇区外侧，通过视觉引导线连到相应的扇区。'inside','inner' 同 'inside',饼图扇区内部。'center'在饼图中心位置。
+	                formatter: '{b} : {c}'  // 标签内容
+	            }
+	        },
+	        labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
+	            normal: {
+	                show: true,             // 是否显示视觉引导线。
+	                length: 15,             // 在 label 位置 设置为'outside'的时候会显示视觉引导线。
+	                length2: 10,            // 视觉引导项第二段的长度。
+	                lineStyle: {            // 视觉引导线的样式
+	                    color: '#202020',
+	                    width: 1
+	                }
+	            }
+	        },
+//{
+//          name:'半径模式',
+//          type:'pie',
+//          radius : [20, 50],
+//          center : ['25%', '60%'],
+//          roseType : 'radius',
+//          label: {
+//              normal: {
+//                  show: false
+//              },
+//              emphasis: {
+//                  show: true
+//              }
+//          },
+//          lableLine: {
+//              normal: {
+//                  show: false
+//              },
+//              emphasis: {
+//                  show: true
+//              }
+//          },
+	        data: data                      // 系列中的数据内容数组。
+	    }]
+	};
+	
+	// 使用刚指定的配置项和数据显示图表
+	chart1.setOption(option)
+        }
+    </script>
+	</body>	
+</html>

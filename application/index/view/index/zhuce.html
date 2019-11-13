@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="referrer" content="no-referrer">
+		<meta charset="UTF-8">
+		<title>Medical Block嫕美国际</title>
+        <!--<script src="__INDEX__/js/login.js" type="text/javascript" charset="utf-8"></script>-->
+        <script src="__INDEX__/js/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body{
+			background: #fff;
+			    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background-size: cover;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+			
+		}
+		header{
+			position: relative;
+		}
+		.login{
+			position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color:#4269F2;
+		}
+		.bbox{
+			/*text-align: center;*/
+			position: relative;
+			    text-align: center;
+    margin: 1rem 1rem 3rem 1rem;
+		}
+		#username{
+			width: 80%;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    border-bottom: 0.01rem solid #c4c4c4;
+}
+#password{
+	width: 80%;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    border-bottom: 0.01rem solid #c4c4c4;
+}
+#phone{
+	width: 80%;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    border-bottom: 0.01rem solid #c4c4c4;
+}
+#pid{
+	width: 80%;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    border-bottom: 0.01rem solid #c4c4c4;
+}
+#xieyi{
+	position: absolute;
+	top: 0.2rem;
+}
+.bbox span{
+	color: #2E5EE4;
+	font-size: 0.8rem;
+	margin-left: 1.5rem;
+	}
+.bbox p{
+	width: 80%;
+	position: relative;
+    margin: 1rem 2.2rem;
+}
+.p_box{
+	position: relative;
+}
+.p_box p{
+	color: #2E5EE4;
+    font-size: 0.8rem;
+    position: absolute;
+	right: 3rem;
+}
+.btn_box{
+	text-align: center;
+}
+.btn_box input{
+	width: 80%;
+    height: 2rem;
+    border-radius: 15px;
+    background: #4269F2;
+    border: none;
+    color: #fff;
+    -webkit-appearance: none;
+}
+.tishi{
+	background: #FFFFFF;
+	width: 80%;
+	height: 15rem;
+	    margin: 1rem 1rem 3rem 3rem;
+	    border-radius: 0.5rem;
+    text-align: center;
+    position: relative;
+    bottom:30rem;
+   display: none;
+}
+.tishi img{
+	margin: 1rem;
+}
+.tishi h3{
+	margin: 1rem;
+}
+	</style>
+	<body>
+		<header>
+			<div class="aui-title" style=" line-height: 4.5rem; width:100%; text-align: center;font-size:1.2rem;color: #202020;">注册账号</div>
+			<a href="{:url('index/login')}"><div class="login">
+				登录
+			</div></a>
+		</header>
+		<form action="{:url('/index/index/index')}" method="post" id="formid" onsubmit="return sub()">
+		<div style=" height: 10rem; width:100%; text-align: center;font-size:2rem;color: #FFFFFF;">
+			<img style="width: 50%;" src="__INDEX__/img/ymlogo.png"/>
+		</div>
+		<div class="bbox">
+			<input type="text" name="username" id="username" value="" placeholder="请填写用户名/账号" onblur="usernames(this)"/>
+			<input type="password" name="password" id="password" value="" placeholder="输入密码" onblur="passwords(this)"/>
+			<input type="" name="phone" id="phone" value="" maxlength="11" placeholder="手机号码" onblur="phones(this)"/>
+			<input type="" name="pid" id="pid" value="{$code}" placeholder="邀请码" onblur="pids(this)"/><br/>
+			<p><input type="checkbox" name="" id="xieyi" value="" /><span>
+				同意《Medical Block 嫕美服务协议》和《隐私协议》
+			</span>
+				
+			</p>
+			<p class="message" id="msg" style="color: red;"></p>
+		</div>
+		<div class="btn_box">
+			<input type="button" name="" id="btn" onclick="check()" value="确定" />
+			<input  type="submit" hidden="hidden"  value="确定" />
+		</div>
+		</form>
+		<div class="tishi">
+			<img src="__INDEX__/img/gou.png"/>
+			<p>注册成功</p>
+			<h3>跳转登录页面....</h3>
+		</div>
+	</body>
+
+<script>
+	function sub(){
+ if(phones("#phone") == true&& passwords("#password") == true&&pids("#pid") == true&&usernames("#username") == true){
+  $('.tishi').show();
+  setTimeout(function(){
+  	$('.tishi').hide();
+  	$('#formid').submit();
+  	},2000);
+  return true;
+ }else{
+  return false;
+ }
+ }
+	function usernames(obj){
+//	var type = /[\da-zA-Z]{6,16}/;
+	if($(obj).val() == ""){
+	    $(obj).addClass("error");
+		 $("#msg").text("用户名不能为空！");
+	    return false;
+	}else{
+	    $(obj).removeClass("error");
+		$("#msg").html('');
+	    return true;
+	}
+}
+	function pids(obj){
+//	var type = /[\da-zA-Z]{6,16}/;
+	if($(obj).val() == ""){
+	    $(obj).addClass("error");
+		 $("#msg").text("请输入正确邀请码");
+	    return false;
+	}else{
+	    $(obj).removeClass("error");
+		$("#msg").html('');
+	    return true;
+	}
+}
+function passwords(obj){
+//	var type = /[\da-zA-Z]{6,16}/;
+	if($(obj).val() == ""){
+	    $(obj).addClass("error");
+		 $("#msg").text("请输入密码");
+	    return false;
+	}else{
+	    $(obj).removeClass("error");
+		$("#msg").html('');
+	    return true;
+	}
+}
+function phones(obj){
+//	var type = /^(0|86|17951)?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+    var type=  /^\d{11}$/;
+	if($(obj).val() == "" || !(type.test($(obj).val()))){
+	    $(obj).addClass("error");
+	    $("#msg").text("请输入正确手机号码");
+	    return false;
+	}else{
+	    $(obj).removeClass("error");
+	    $("#msg").html('');
+	    return true;
+	}
+}
+    function check(){
+        var checkbox = document.getElementById("xieyi");//选中checkbox的id；
+        console.log(checkbox.checked);
+        if(checkbox.checked==true){
+//      	$('.tishi').show();
+           
+sub();
+        }else{          
+            alert('请先查看协议并勾选！');
+        }
+    }
+</script>
+</html>

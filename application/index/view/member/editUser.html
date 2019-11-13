@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+	<title>个人资料</title>
+	<link href="__INDEX__/css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="__INDEX__/css/personal_data.css">
+	<script type="text/javascript" src="__INDEX__/js/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="__INDEX__/js/public_phone.js"></script>
+	<!-- <script type="text/javascript" src="__INDEX__/js/personal_data.js"></script> -->
+</head>
+<body>
+<div class="nav">
+	<a href="{:url('/index/member/index')}"><img src="__INDEX__/img/img_top_back.png" alt=""></a>
+	<span>设置中心</span>
+</div>
+<div class="mean">
+	<div class="mean_one">
+		<a href="javascript:;">
+			<span>头像</span>
+			<div class="mean_pho">
+				<div class="photo">
+					<?php if(!empty($userData['headimg'])){ ?>
+					<!--<img src="__INDEX__/img/img_tx.png" class="checkimg">-->
+					<img src="__IMG__/{$userData['headimg']}" class="checkimg">
+					<?php }else{	 ?>
+					<img src="__INDEX__/img/img_tx.png" class="checkimg">
+					<?php } ?>
+
+				</div>
+				<!--<img src="__INDEX__/img/img_right.png" alt="">-->
+			</div>
+			<div style="clear: both;"></div>
+		</a>
+	</div>
+	<div class="mean_two">
+		<!-- <a href="per_change_nickname.html"> -->
+		<span>昵称</span>
+		<div class="set_right">
+			<div class="right_text">
+				<p>{$userData['username']}</p>
+			</div>
+			<!-- <img src="__INDEX__/img/img_right.png" alt=""> -->
+		</div>
+		<!-- </a> -->
+	</div>
+	<div class="mean_two">
+		<!-- <a href="javascript:;"> -->
+		<span>性别</span>
+		<div class="set_right">
+			<div class="right_text">
+				<select name="" id="" class="checksex">
+					<option value ="1">男</option>
+					<option value ="2" <?php if($userData['sex']==2) echo 'selected=selected'; ?> >女</option>
+				</select>
+			</div>
+			<!-- <img src="__INDEX__/img/img_right.png" alt=""> -->
+		</div>
+		<!-- </a> -->
+	</div>
+	<div class="mean_two">
+		<span>ID</span>
+		<div class="set_right">
+			<div class="yqm">
+				<p>{$userData['id']}</p>
+			</div>
+		</div>
+	</div>
+	<div class="mean_two">
+		<span>我的邀请人</span>
+		<div class="set_right">
+			<div class="yqm">
+				<p>{$yqr}</p>
+			</div>
+		</div>
+	</div>
+	<div class="mean_two">
+		<!-- <a href="change_phone.html"> -->
+		<span>手机号码</span>
+		<div class="set_right">
+			<div class="right_text">
+				<p>{$userData['phone']}</p>
+			</div>
+			<!-- <img src="__INDEX__/img/img_right.png" alt=""> -->
+		</div>
+		<!-- </a> -->
+	</div>
+	<!-- <div class="mean_two">
+        <a href="change_idcard.html">
+            <span>身份证号码</span>
+            <div class="set_right">
+                <div class="right_text">
+                    <p>12345678911</p>
+                </div>
+                <img src="__INDEX__/img/img_right.png" alt="">
+            </div>
+        </a>
+    </div> -->
+	<div class="mean_two">
+		<span>我的邀请码</span>
+		<div class="set_right">
+			<div class="yqm">
+				<p>{$userData['code']}</p>
+			</div>
+		</div>
+	</div>
+
+	<!--<div class="mean_two">-->
+		<!--<a href="javascript:;">-->
+			<!--<span>更换我的收款码</span>-->
+			<!--<div class="set_right">-->
+				<!--<div class="right_text no_text">-->
+					<!--<p></p>-->
+				<!--</div>-->
+
+			<!--</div>-->
+		<!--</a>-->
+	<!--</div>-->
+	<!--<div class="mean_two">-->
+		<!--<a href="javascript:;">-->
+			<!--<span>银行卡</span>-->
+			<!--<div class="set_right">-->
+				<!--<div class="right_text no_text">-->
+					<!--<p></p>-->
+				<!--</div>-->
+
+			<!--</div>-->
+		<!--</a>-->
+	<!--</div>-->
+	<div class="mean_two">
+		<a href="javascript:;">
+			<span>修改密码</span>
+			<div class="set_right">
+				<div class="right_text no_text">
+					<p></p>
+				</div>
+			</div>
+		</a>
+	</div>
+	<a href="{:url('/index/member/editUser',['edit'=>'edit'])}" class="modify">
+		修改资料
+	</a>
+	<a href="{:url('/index/member/logout')}" class="modify">
+		退出登录
+	</a>
+</div>
+<!-- 设置头像 -->
+<div class="portrait"></div>
+<div class="por_center">
+	<div class="por_select">
+		<p>从相册中选中</p>
+		<input type="file" class="imgInput">
+	</div>
+	<a href="javascrtip:;">取消</a>
+</div>
+</body>
+</html>

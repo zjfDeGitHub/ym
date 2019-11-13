@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<link href="__INDEX__/css/mui.min.css" rel="stylesheet"/>
+		<script type="text/javascript" src="__INDEX__/js/jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="__INDEX__/js/public_phone.js"></script>
+		<title></title>
+		<style>
+			body{
+				background-color: #FFFFFF;
+			}
+			.nav{
+				width: 100%;
+				height:0.88rem;
+				background: #FFFFFF;
+				position:relative;
+			}
+			.nav>.back{
+				width: 0.2rem;
+				height:0.36rem;
+				position:absolute;
+				top:0.26rem;
+				left:0.4rem;
+			}
+			.nav>.back>img{
+				width: 0.2rem;
+				height:0.36rem;
+				display: block;
+			}
+			.nav>span{
+				display: block;
+				color:#323232;
+				font-size: 0.34rem;
+				line-height: 0.88rem;
+				text-align: center;
+				font-weight: bold;
+			}
+			.nav>.zd{
+				position: absolute;
+			    top: 0.22rem;
+			    right: 0.1rem;
+			    font-size: 0.3rem;
+			    color: #999;
+			}
+			.content{
+				margin: 0.4rem 0.5rem;
+			}
+			.content>form>div{
+			/* 	display: flex;
+				align-items: center; */
+				margin-top: 0.4rem;
+			}
+			.content>form>div>p{
+				margin: 0;
+				font-size: 0.28rem;
+				color: #202020;
+				width: 30%;
+			}
+			.content>form>div>input{
+				font-size: 0.25rem;
+				width: 100%;
+				margin-top: 0.2rem;
+			}
+			.content>form>div:nth-of-type(1)>input{
+				height: 0.45rem;
+				border: none;
+				border-bottom: 0.01rem solid #CCCCCC;
+				margin-bottom: 0;
+				padding: 0;
+				font-size: 0.3rem;
+			}
+			form>input{
+				display: block !important; 
+				width: 100%;
+				height: 0.9rem;
+				background-color: #FF6B6B !important;
+				border: none !important;
+				margin: 1rem auto;
+			}
+			.content>b{
+				color: #202020;
+				font-size: 0.29rem;
+			}
+			.content>p{
+				font-size: 0.25rem;
+				color: #9B9B9B;
+				line-height: 0.4rem;
+				text-indent: 0.6rem;
+				margin-top: 0.2rem;
+			}
+			form>p{
+				margin-top: 0.15rem;
+			}
+			.massage{
+				margin-top: 0.25rem;
+			}
+			.massage>b{
+				font-size: 0.28rem;
+			}
+			.massage>p{
+				text-indent: 0.4rem;
+				line-height: 0.4rem;				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			<a href="{:url('/index/member/index')}" class="back"><img src="__INDEX__/img/img_top_back.png" alt=""></a>
+			<span>提现</span>
+			<a href="{:url('/index/member/oder')}" class="zd">我的账单</a>
+		</div>
+		<div class="content">
+			<b>提现规则</b>
+			<p>提现金额最低为100元，提现金额必须是整数出现，比如：100、200、300，……以此类推，不得出现如145.32、167、132等不规则数值。提现金额将于工作24个小时内到账。</p>
+			<form action="{:url('/index/member/embody')}" method="post" enctype="multipart/form-data">
+				<div><p>提现金额</p><input type="text" name="txBeans" class="money" placeholder=""/></div>
+				<p>可提提现青春豆3000，可提现金额2400</p>
+				<div><p>上传二维码</p><input type="file" name="image" /></div>				
+				<input type="submit" value="提交" class="ok"/>
+				
+			</form>
+			<div class="massage">
+				<b>温馨提示</b>
+				<p>（ 提现） 80%， 5%个人所得税， 5%平台管理维护费， 10%爱心基金</p>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			$(".money").change(function(){
+				var mon=$(".money").val();
+				if(mon==""||mon%100!=0){
+					$("form>input").attr("disabled","disabled");
+				}else{
+					$("form>input").removeAttr("disabled");
+				}				
+			})			
+		})
+	</script>
+</html>

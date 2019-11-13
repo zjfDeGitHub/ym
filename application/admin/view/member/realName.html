@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__ADMIN__/style/bootstrap.css" rel="stylesheet">
+    <link href="__ADMIN__/style/font-awesome.css" rel="stylesheet">
+    <link href="__ADMIN__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__ADMIN__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__ADMIN__/style/demo.css" rel="stylesheet">
+    <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
+    <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    <style>
+        .li_img{
+            width: 100px;
+            height: 100px;
+            z-index: 100;
+        }
+        .text{
+            height: 25px;
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+        .search{
+            width: 50px;
+            height: 20px;
+            font-size: 12px;
+            border: none;
+            background-color: rgb(45, 195, 232);
+            color: #ffffff;
+            border-radius:3px;
+            margin-left: 5px;
+
+        }
+    </style>
+</head>
+<body>
+<!-- 头部 -->
+{include file="common/top"}
+
+<!-- /头部 -->
+
+<div class="main-container container-fluid">
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        {include file="common/left"}
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">系统</a>
+                    </li>
+                    <li class="active">会员管理</li>
+                </ul>
+            </div>
+            <!-- /Page Breadcrumb -->
+
+            <!-- Page Body -->
+            <div class="page-body">
+
+                <!--<button type="button" tooltip="添加会员" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '/admin/user/add.html'"> <i class="fa fa-plus"></i> Add-->
+                <!--</button>-->
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="flip-scroll">
+                                    <table class="table table-bordered table-hover">
+                                        <!--<form action="{:url('member/embody')}" method="post">-->
+                                            <!--<input type="text" name="value" class="text"/>-->
+                                            <!--<select name="type">-->
+                                                <!--&lt;!&ndash;<option value="status">状态</option>&ndash;&gt;-->
+                                                <!--<option value="emcode">订单编号</option>-->
+                                            <!--</select>-->
+                                            <!--<input type="submit" value="搜索" class="search"/>-->
+
+                                        <!--</form>-->
+                                        <!--<a  href="{:url('member/embody',['status'=>1])}"><input type="button" value="等待确认" class="search"/></a>-->
+                                        <!--<a  href="{:url('member/embody')}"><input type="button" value="清空" class="search"/></a>-->
+                                        <thead class="">
+                                        
+                                        <tr>
+                                            <th class="text-center">id</th>
+                                            <th class="text-center">用户id</th>
+                                            <th class="text-center">姓名</th>
+                                            <th class="text-center">状态</th>
+                                            <th class="text-center">身份证号</th>
+                                            <th class="text-center">身份证前</th>
+                                            <th class="text-center">身份证后</th>
+                                            <th class="text-center">电话号码</th>
+                                            <th class="text-center">时间</th>
+
+
+                                            <th class="text-center">操作</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {volist name="realName" id="vo"}
+                                        <tr>
+                                            <td align="center">{$vo['id']}</td>
+                                            <td align="center">{$vo['userId']}</td>
+                                            <td align="center">{$vo['userName']}</td>
+                                            <td align="center">{$vo['status']}</td>
+                                            <td align="center">{$vo['IDCardNum']}</td>
+                                            <td align="center" style="position: relative;"><div class="img">{$vo['IDCardQ']}</div></td>
+                                            <td align="center" style="position: relative;"><div class="img">{$vo['IDCardH']}</div></td>
+                                            <td align="center" class="state">{$vo['phone']}</td>
+                                            <td align="center" class="state">{$vo['time']}</td>
+
+                                            <img class="li_img" style="display:block; position: absolute"/>
+                                            <td align="center">
+                                                <a href="{:url('realname',['id'=>$vo['userId']])}" class="btn btn-primary btn-sm shiny">
+                                                    <i class="fa fa-edit"></i> 确认
+                                                </a>
+                                                <a href="{:url('realnameD',['id'=>$vo['userId']])}" class="btn btn-danger btn-sm shiny">
+                                                    <i class="fa fa-trash-o"></i> 不通过
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {/volist}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /Page Body -->
+        </div>
+        <!-- /Page Content -->
+    </div>
+</div>
+
+<!--Basic Scripts-->
+<script src="__ADMIN__/style/jquery_002.js"></script>
+<script src="__ADMIN__/style/bootstrap.js"></script>
+<script src="__ADMIN__/style/jquery.js"></script>
+<!--Beyond Scripts-->
+<script src="__ADMIN__/style/beyond.js"></script>
+<script>
+    $(function(){
+        $(document).mousemove(function (en) {
+            var xPos = parseInt(en.pageX-220) + "px";
+            var yPos = parseInt(en.pageY-100) + "px";
+            $(".li_img").css("left", xPos);
+            $(".li_img").css("top", yPos);
+        });
+        $(".img").hover(function () {
+                var tt=$(this).text();
+                $(".li_img").attr("src",'__IMG__/'+tt).fadeIn(100);
+            },
+            function () {
+                $(".li_img").fadeOut(100);
+            }
+        );
+        var len=$("tbody>tr").length;
+        for(var i=0;i<len;i++){
+            var tet=$("tbody>tr").eq(i).children(".state").text();
+            if(tet == "完成"){
+                $("tbody>tr").eq(i).children(".state").css("color","green");
+            }else{
+                $("tbody>tr").eq(i).children(".state").css("color","red");
+            }
+        }
+    })
+</script>
+
+
+</body></html>
